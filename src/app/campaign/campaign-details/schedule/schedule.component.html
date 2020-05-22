@@ -1,0 +1,23 @@
+
+
+  
+
+
+<table class="table">
+
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Time Slot</th>
+        <th scope="col">Name</th>
+        <th scope="col">City</th>
+      </tr>
+    </thead>
+
+    <tbody *ngFor = "let s of scheduleList ; let i = index">
+      <tr>
+        <th scope="row">{{i}}1</th>
+        <td>{{s.timeSlot}}</td>
+        <td>{{s.name}}</td>
+        <td>{{s.city}}</td>
+      </tr>
