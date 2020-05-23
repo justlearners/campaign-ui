@@ -17,6 +17,8 @@ import { CampaignDetailsComponent } from './campaign/campaign-details/campaign-d
 import { CampaignService } from './shared/campaign.service';
 import { ScheduleService } from './shared/schedule.service';
 import { CampaignStartComponent } from './campaign/campaign-start/campaign-start.component'
+import { AppConfigModule } from './app-config/app-config.module';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -34,9 +36,10 @@ import { CampaignStartComponent } from './campaign/campaign-start/campaign-start
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpModule,
     FormsModule,
-    HttpClientModule
-
+    HttpClientModule,
+    AppConfigModule.forRoot()
   ],
   providers: [CampaignService, ScheduleService],
   bootstrap: [AppComponent]

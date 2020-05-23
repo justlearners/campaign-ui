@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "newCampaign"
+    }
+  },
+  "defaultProject": "newCampaign",
+  "cli": {
+    "analytics": false
+  }
 }
