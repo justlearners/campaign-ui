@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Campaign } from 'src/app/shared/campaign.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -15,11 +16,19 @@ export class CampaignItemComponent implements OnInit {
 
   id: number;
 
-  constructor() { }
+  constructor(private router: Router) { 
+     console.log(this) };
 
   ngOnInit(): void {
 
  this.id = this.index;
+  }
+
+  openCampaignInNewWindow(campaign) {
+      const url = this.router.serializeUrl(
+      this.router.createUrlTree([`/campaignd/${campaign.cid}`])
+    );
+    window.open(url, '_blank');
   }
 
 }

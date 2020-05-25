@@ -12,7 +12,11 @@ export class ApiModel {
         appConfigModel: AppConfigModel = new AppConfigModel;
 		apiRoot = this.appConfigModel.apiRootDev;
 		//apiRoot = "";        
+        apiRootUrl = this.apiRoot;
         campaignListUrl = this.apiRoot +'/campaignList';
+        campaignDetailsUrl = this.apiRoot +'/campaignDetails?cid={cid}';
+        saveBookingUrl = this.apiRoot +'/saveBooking';
+
        
     }
     

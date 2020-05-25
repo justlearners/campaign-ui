@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavbarService } from 'src/app/navbar/navbar.service';
 
 @Component({
   selector: 'app-campaign',
@@ -7,17 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CampaignComponent implements OnInit {
 
-  constructor() { }
+  constructor(public nav: NavbarService) { }
 
-  ngOnInit(): void {
-
-    
-
+  ngOnInit() {  
+    this.nav.show();
   }
-
-
-  
-  
-
-
 }

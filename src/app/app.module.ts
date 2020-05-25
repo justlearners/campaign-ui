@@ -16,8 +16,10 @@ import { CampaignItemComponent } from './campaign/campaign-list/campaign-item/ca
 import { CampaignDetailsComponent } from './campaign/campaign-details/campaign-details.component';
 import { CampaignService } from './shared/campaign.service';
 import { ScheduleService } from './shared/schedule.service';
+import { NavbarService } from './navbar/navbar.service';
 import { CampaignStartComponent } from './campaign/campaign-start/campaign-start.component'
 import { AppConfigModule } from './app-config/app-config.module';
+import { NavbarComponent } from './navbar/navbar.component';
 import { HttpModule } from '@angular/http';
 
 @NgModule({
@@ -31,7 +33,8 @@ import { HttpModule } from '@angular/http';
     CampaignListComponent,
     CampaignItemComponent,
     CampaignDetailsComponent,
-    CampaignStartComponent
+    CampaignStartComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -40,8 +43,9 @@ import { HttpModule } from '@angular/http';
     FormsModule,
     HttpClientModule,
     AppConfigModule.forRoot()
+    
   ],
-  providers: [CampaignService, ScheduleService],
+  providers: [CampaignService, ScheduleService,NavbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,7 +11,7 @@ import { CampaignStartComponent } from './campaign/campaign-start/campaign-start
 
 const routes: Routes = [
   {
-    path: 'campaign', component: CampaignComponent, children: [
+    path: 'campaignd', component: CampaignComponent, children: [
       {path : '' , component : CampaignStartComponent},
       { path: ':id', component: CampaignDetailsComponent },
       { path: ':id/booking', component: BookingComponent },

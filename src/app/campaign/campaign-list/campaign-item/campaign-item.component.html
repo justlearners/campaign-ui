@@ -1,8 +1,8 @@
 
-<a  [routerLink] = '[id]' routerLinkActive = 'active'  class="container-fluid" style="cursor: pointer;">
+<a  (click)="openCampaignInNewWindow(myCampaign)"  class="container-fluid" style="cursor: pointer;">
 <div class="row">
     <div class="col-sm-12">
-       <h6>{{myCampaign.name}}</h6> 
+       <h6>{{myCampaign.shortdesc}}</h6> 
     </div>
 </div>
 </a>

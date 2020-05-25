@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CampaignService } from 'src/app/shared/campaign.service';
 import { Campaign } from 'src/app/shared/campaign.model';
-
+import { NavbarService } from 'src/app/navbar/navbar.service';
 
 @Component({
   selector: 'app-campaign-details',
@@ -13,21 +13,29 @@ export class CampaignDetailsComponent implements OnInit {
 
   selectedIndex : number;
   
-  selectedCampaign : Campaign;
+  selectedCampaign : Campaign=null;
+  apiRootUrl: String;
 
-
-  constructor(private router:Router,private route : ActivatedRoute,private campaignService : CampaignService) { }
+  constructor(public nav: NavbarService,private router:Router,private route : ActivatedRoute,private campaignService : CampaignService) { }
 
   ngOnInit(): void {
+    this.nav.hide();
     this.route.params.subscribe(
       (params)=>{
         this.selectedIndex = +params['id'];
-      //  console.log(this.selectedIndex);
-        this.selectedCampaign = this.campaignService.getCampaign1(this.selectedIndex)
-        //console.log(this.selectedCampaign);
-        
+        console.log('this.selectedIndex--',this.selectedIndex);
+       // this.selectedCampaign = this.campaignService.getCampaign1(this.selectedIndex)
+       this.campaignService.getCampaignDetails(this.selectedIndex).subscribe(
+        response => {
+          console.log('campaign details--',response);
+          this.selectedCampaign = response[0];
+          console.log('this.selectedCampaign--',this.selectedCampaign);
+          }
+        );
+        this.apiRootUrl=this.campaignService.getApiRootUrl()+"/";
       }
     );
+    
   }
  
   onBooking(){
