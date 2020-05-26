@@ -15,12 +15,20 @@ export class ApiModel {
         apiRootUrl = this.apiRoot;
         campaignListUrl = this.apiRoot +'/campaignList';
         campaignDetailsUrl = this.apiRoot +'/campaignDetails?cid={cid}';
+        allBookingsUrl = this.apiRoot +'/bookingFullDetails?cid={cid}';
+        masterSlotListUrl = this.apiRoot +'/slotList';
         saveBookingUrl = this.apiRoot +'/saveBooking';
 
        
     }
     
     url = new ApiModel.Url();
+}
+
+export class SlotModel {
+    id: string;
+    config_key: string;
+    config_value: string;
 }
 
 export class LoginModel {
@@ -40,31 +48,3 @@ export class UserProfileModel {
 
 }
 
-export class UiConfigModel {
-    id: string;
-    configKey: string;
-    configValue: string;
-    refKey: string;
-    refValue: string;
-    isActive: string;    
-}
-
-
-export class WhitelistIpModel {
-    whitelistFlag: string;    
-}
-
-export class ApiStatusIndicator {
-    isLoading = false;
-    message: string;
-}
-
-export enum ResponseCodeType {
-    SUCCESS = '200',
-    NO_CONTENT = '204',
-}
-
-export class ServerConfigModel {
-    SENSE_AUTH_TOKEN: string;
-    DATA_ENGINE: string;
-}

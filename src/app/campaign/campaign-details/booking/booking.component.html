@@ -44,13 +44,13 @@
     <!-- this date picker doesn't take max date dynamically ?? -->
     <div class="form-group">
         <label for="date">Date:</label> &nbsp;
-        <input type="date" id="date" name="date"  value="" required [(ngModel)] = "booking.booking_date" >
+        <input type="date" (ngModelChange)="dateChanged()" id="date" name="date"  value="" required [(ngModel)] = "booking.booking_date" >
         
         <span class="validity"></span>
     </div>
      
     <div class="form-group ">
-        <label for="timeSlot">Time Slot</label>
+        <label for="timeSlot">Available Time Slot</label>
         <select id="timeSlot" class="form-control" name ="timeSlot" [(ngModel)] = "booking.slot">
             <option selected>Choose...</option>
             <option>1</option>

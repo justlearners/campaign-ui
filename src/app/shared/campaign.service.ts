@@ -44,6 +44,16 @@ export class CampaignService{
                 }));       
     }
 
+    getAllBookings(cid){
+        let apiUrl = this.configService.api.url.allBookingsUrl;
+        apiUrl = apiUrl.replace('{cid}', cid);
+        //let apiUrl = 'assets/json/dashboard_list_resp.json';
+        return this.http.get(apiUrl).pipe(map(res => {
+            console.log('res1--',res);
+            return res.json();
+                }));       
+    } 
+
     saveBooking(booking: Booking){
         let apiUrl = this.configService.api.url.saveBookingUrl;
       const httpOptions = {

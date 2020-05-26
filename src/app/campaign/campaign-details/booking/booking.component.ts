@@ -1,12 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserBookingService } from '../../../shared/userBooking.service'
-import { UserBooking } from 'src/app/shared/userBooking.model';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Campaign } from 'src/app/shared/campaign.model';
 import { CampaignService } from 'src/app/shared/campaign.service';
 import { ScheduleService } from 'src/app/shared/schedule.service';
+import { UserBookingService } from '../../../shared/userBooking.service';
 import { Booking, User } from './booking.model';
-import { Campaign } from 'src/app/shared/campaign.model';
+import { ConfigService } from '../../../app-config/config.service';
+import { SlotModel } from '../../../app-config/config.model';
+import { NavbarService } from 'src/app/navbar/navbar.service';
+
 
 @Component({
   selector: 'app-booking',
@@ -19,9 +22,11 @@ export class BookingComponent implements OnInit {
   cid: number;
   booking: Booking=new Booking();
   selectedCampaign : Campaign=null;
+  slotList: SlotModel[];
+  allBookings: Booking[];
 
-  constructor(private userBooking: UserBookingService, private route: ActivatedRoute, private campaignService: CampaignService,
-    private schedule: ScheduleService) {
+  constructor(public nav: NavbarService,private userBooking: UserBookingService, private route: ActivatedRoute, private campaignService: CampaignService,
+    private schedule: ScheduleService,private configService: ConfigService) {
       
     // schedule.scheduleAdded.subscribe((schedule)=>{
     //   console.log(schedule);
@@ -29,7 +34,7 @@ export class BookingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.nav.hide();
     this.route.params.subscribe(
       (params: Params) => {
         this.cid = params['id'];
@@ -44,9 +49,27 @@ export class BookingComponent implements OnInit {
             console.log('this.selectedCampaign--',this.selectedCampaign);
             }
           );
+          this.configService.getMasterSlotList().subscribe(
+            response => {
+              
+              this.slotList = response;
+              console.log('this.slotList --',this.slotList);
+              }
+            );
+            this.campaignService.getAllBookings(this.cid).subscribe(
+              response => {                
+                this.allBookings = response;
+                console.log('this.allBookings --',this.allBookings);
+                }
+              );
+
       }
     )
 
+  }
+
+  dateChanged(): void {
+    console.log("date changed--");
   }
 
   onSubmit(f: NgForm) {
