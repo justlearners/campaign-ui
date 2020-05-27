@@ -18,18 +18,19 @@ import { NavbarService } from 'src/app/navbar/navbar.service';
 })
 export class BookingComponent implements OnInit {
 
-  
+
   cid: number;
-  booking: Booking=new Booking();
-  selectedCampaign : Campaign=null;
+  booking: Booking = new Booking();
+  selectedCampaign: Campaign = null;
   slotList: SlotModel[];
   allBookings: Booking[];
-  startDate:string;
-  endDate : string;
+  startDate: string;
+  endDate: string;
 
-  constructor(public nav: NavbarService,private userBooking: UserBookingService, private route: ActivatedRoute, private campaignService: CampaignService,
-    private schedule: ScheduleService,private configService: ConfigService) {
-      
+  constructor(public nav: NavbarService, private userBooking: UserBookingService, private route: ActivatedRoute, 
+    private campaignService: CampaignService,
+    private schedule: ScheduleService, private configService: ConfigService) {
+
     // schedule.scheduleAdded.subscribe((schedule)=>{
     //   console.log(schedule);
     // })
@@ -40,36 +41,36 @@ export class BookingComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.cid = params['id'];
-        this.booking=new Booking();     
-        var usr=new User();
-        this.booking.usr=usr;
-        this.booking.cid=this.cid;
+        this.booking = new Booking();
+        var usr = new User();
+        this.booking.usr = usr;
+        this.booking.cid = this.cid;
         this.campaignService.getCampaignDetails(this.cid).subscribe(
           response => {
-            console.log('campaign details--',response);
+            console.log('campaign details--', response);
             this.selectedCampaign = response[0];
-            console.log('this.selectedCampaign--',this.selectedCampaign);
-            
+            console.log('this.selectedCampaign--', this.selectedCampaign);
+
             this.startDate = this.formatDate(this.selectedCampaign.startdate);
             this.endDate = this.formatDate(this.selectedCampaign.enddate);
-            console.log('start date is - '+this.startDate);
-            console.log('end date is - '+this.endDate);
-            }
-            
-          );
-          this.configService.getMasterSlotList().subscribe(
-            response => {
-              
-              this.slotList = response;
-              console.log('this.slotList --',this.slotList);
-              }
-            );
-            this.campaignService.getAllBookings(this.cid).subscribe(
-              response => {                
-                this.allBookings = response;
-                console.log('this.allBookings --',this.allBookings);
-                }
-              );
+            console.log('start date is - ' + this.startDate);
+            console.log('end date is - ' + this.endDate);
+          }
+
+        );
+        this.configService.getMasterSlotList().subscribe(
+          response => {
+
+            this.slotList = response;
+            console.log('this.slotList --', this.slotList);
+          }
+        );
+        this.campaignService.getAllBookings(this.cid).subscribe(
+          response => {
+            this.allBookings = response;
+            console.log('this.allBookings --', this.allBookings);
+          }
+        );
 
       }
     )
@@ -83,25 +84,32 @@ export class BookingComponent implements OnInit {
   onSubmit(f: NgForm) {
     //User user=new User(f.name,f.email,f.phone,f.address,f.city,f.country,'admin');
     //Booking booking=new Booking(cid,); 
-   
-    console.log('this.booking--',this.booking);
+
+    console.log('this.booking--', this.booking);
     this.campaignService.saveBooking(this.booking).subscribe(
       response => {
-        console.log('saveBooking--',response);
-        }
-      );
+        console.log('saveBooking--', response);
+      }
+    );
 
     f.onReset();
   }
 
   formatDate(date) {
     var d = new Date(date),
-        month = '' + (d.getMonth() + 1),        
-        day = '' + d.getDate(),
-        year = d.getFullYear();
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
 
-     return [year, month, day].join('-');
-}
+      if(+month < 10){
+        month = '0' + month
+      }
+      if (+day < 10){
+        day = '0' + day;
+      }
+
+    return [year, month, day].join('-');
+  }
 
 
 }

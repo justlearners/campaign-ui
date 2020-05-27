@@ -38,26 +38,25 @@
         <label for="phone">Phone Number:</label>
         <input type="number" class="form-control" id="phone" name="phone" pattern="[1-9]{1}[0-9]{9}" required
             [(ngModel)]="booking.usr.contact" #phone="ngModel">
-        <span class="text-danger" *ngIf="!phone.valid && phone.touched">Please enter phone number! </span>
+        <span class="text-danger" *ngIf="!phone.valid && phone.touched">Please enter 10 digit phone number! </span>
     </div>
 
 
 
-    <!-- this date picker doesn't take max /min date dynamically ?? -->
+    
     <div class="form-group">
         <label for="date">Date:</label> &nbsp;
-        <input type="date" (ngModelChange)="dateChanged()" id="date" name="date" value={{startDate}} required
-            min="2020-05-27" max="2020-05-30" [(ngModel)]="booking.booking_date" #date="ngModel"> &nbsp;
+        <input type="date" (ngModelChange)="dateChanged()" id="date" name="date" value='' required
+            min="{{startDate}}" max="{{endDate}}" [(ngModel)]="booking.booking_date" #date="ngModel"> &nbsp;<br>
             
         <span class="text-danger" *ngIf="!date.valid && date.touched">Please select date! </span>
     </div>
 
     <div class="form-group ">
         <label for="timeSlot">Available Time Slot</label>
-        <select id="timeSlot" class="form-control" name="timeSlot" [(ngModel)]="booking.slot" #slot="ngModel" required>
-            <option selected>Choose...</option>
-            <option>1</option>
-            <option>2</option>
+        <select id="timeSlot" class="form-control" name="timeSlot" [(ngModel)]="booking.slot" #slot="ngModel" required >
+            <option value=""></option>
+            <option *ngFor = "let slot of slotList">{{slot.config_value}}</option>
         </select>
         <span class="text-danger" *ngIf="!slot.valid && slot.touched">Please select a slot! </span>
     </div>
