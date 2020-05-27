@@ -8,10 +8,12 @@ import {NavbarService} from '../navbar/navbar.service'
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private nav: NavbarService) { }
+  navDisplay:boolean;
+
+  constructor(private navService: NavbarService) { }
 
   ngOnInit(): void {
-
+ this.navDisplay = this.navService.visible;
   }
 
 }
