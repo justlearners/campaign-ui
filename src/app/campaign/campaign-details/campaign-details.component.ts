@@ -15,6 +15,8 @@ export class CampaignDetailsComponent implements OnInit {
   
   selectedCampaign : Campaign=null;
   apiRootUrl: String;
+  startDate: string;
+  endDate : string;
 
   constructor(public nav: NavbarService,private router:Router,private route : ActivatedRoute,private campaignService : CampaignService) { }
 
@@ -30,6 +32,8 @@ export class CampaignDetailsComponent implements OnInit {
           console.log('campaign details--',response);
           this.selectedCampaign = response[0];
           console.log('this.selectedCampaign--',this.selectedCampaign);
+          this.startDate = this.formatDate(this.selectedCampaign.startdate);
+          this.endDate = this.formatDate(this.selectedCampaign.enddate);
           }
         );
         this.apiRootUrl=this.campaignService.getApiRootUrl()+"/";
@@ -46,4 +50,13 @@ export class CampaignDetailsComponent implements OnInit {
   onSchedule(){
     this.router.navigate(['schedule'],{relativeTo:this.route});
   }
+
+  formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),        
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+     return [day, month, year].join('-');
+}
 }

@@ -24,6 +24,8 @@ export class BookingComponent implements OnInit {
   selectedCampaign : Campaign=null;
   slotList: SlotModel[];
   allBookings: Booking[];
+  startDate:string;
+  endDate : string;
 
   constructor(public nav: NavbarService,private userBooking: UserBookingService, private route: ActivatedRoute, private campaignService: CampaignService,
     private schedule: ScheduleService,private configService: ConfigService) {
@@ -47,7 +49,13 @@ export class BookingComponent implements OnInit {
             console.log('campaign details--',response);
             this.selectedCampaign = response[0];
             console.log('this.selectedCampaign--',this.selectedCampaign);
+            
+            this.startDate = this.formatDate(this.selectedCampaign.startdate);
+            this.endDate = this.formatDate(this.selectedCampaign.enddate);
+            console.log('start date is - '+this.startDate);
+            console.log('end date is - '+this.endDate);
             }
+            
           );
           this.configService.getMasterSlotList().subscribe(
             response => {
@@ -74,7 +82,8 @@ export class BookingComponent implements OnInit {
 
   onSubmit(f: NgForm) {
     //User user=new User(f.name,f.email,f.phone,f.address,f.city,f.country,'admin');
-    //Booking booking=new Booking(cid,);
+    //Booking booking=new Booking(cid,); 
+   
     console.log('this.booking--',this.booking);
     this.campaignService.saveBooking(this.booking).subscribe(
       response => {
@@ -85,7 +94,14 @@ export class BookingComponent implements OnInit {
     f.onReset();
   }
 
+  formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),        
+        day = '' + d.getDate(),
+        year = d.getFullYear();
 
+     return [year, month, day].join('-');
+}
 
 
 }
