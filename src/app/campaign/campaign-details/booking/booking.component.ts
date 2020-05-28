@@ -26,8 +26,10 @@ export class BookingComponent implements OnInit {
   allBookings: Booking[];
   startDate: string;
   endDate: string;
+  displaySlots = [];
+  temp = [];
 
-  constructor(public nav: NavbarService, private userBooking: UserBookingService, private route: ActivatedRoute, 
+  constructor(public nav: NavbarService, private userBooking: UserBookingService, private route: ActivatedRoute,
     private campaignService: CampaignService,
     private schedule: ScheduleService, private configService: ConfigService) {
 
@@ -77,13 +79,55 @@ export class BookingComponent implements OnInit {
 
   }
 
-  dateChanged(): void {
-    console.log("date changed--");
+  dateChanged(ev) {
+    this.displaySlots = [];
+    console.log("date changed -- " + ev);
+
+
+    // to get id of booked slots
+    this.temp = this.allBookings.filter((booking) => {
+      return this.formatDate(booking.booking_date) == ev
+    }).map((resp) => {
+      return resp.slot
+    });
+    console.log("Booked lot id [temp]  --  " + this.temp)
+
+//  to display available slots
+    this.slotList.filter(
+      (slot) => {
+        if (this.temp.length == 0) {
+          this.displaySlots.push(slot.config_value)
+        }
+        else if (this.temp.length == this.slotList.length) {
+          console.log("No slot available")
+        }
+        else {
+          this.temp.filter((val) => {
+
+            if (val == slot.id) {
+            }
+            else
+              this.displaySlots.push(slot.config_value)
+          })
+        }
+      });
+
+    console.log("dispalySlots  ---  " + this.displaySlots)
+
   }
+
+
+
 
   onSubmit(f: NgForm) {
     //User user=new User(f.name,f.email,f.phone,f.address,f.city,f.country,'admin');
     //Booking booking=new Booking(cid,); 
+
+
+    this.booking.slot = this.slotList.filter(
+      slot => {
+        return slot.config_value == this.booking.slot
+      })[0].id;
 
     console.log('this.booking--', this.booking);
     this.campaignService.saveBooking(this.booking).subscribe(
@@ -101,15 +145,16 @@ export class BookingComponent implements OnInit {
       day = '' + d.getDate(),
       year = d.getFullYear();
 
-      if(+month < 10){
-        month = '0' + month
-      }
-      if (+day < 10){
-        day = '0' + day;
-      }
+    if (+month < 10) {
+      month = '0' + month
+    }
+    if (+day < 10) {
+      day = '0' + day;
+    }
 
     return [year, month, day].join('-');
   }
+
 
 
 }

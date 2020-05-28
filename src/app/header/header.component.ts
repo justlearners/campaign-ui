@@ -8,12 +8,19 @@ import {NavbarService} from '../navbar/navbar.service'
 })
 export class HeaderComponent implements OnInit {
 
-  navDisplay:boolean;
+  navDisplay:boolean = true;
 
-  constructor(private navService: NavbarService) { }
+  constructor(public nav: NavbarService) {
+
+   }
 
   ngOnInit(): void {
- this.navDisplay = this.navService.visible;
+    //  this.navService.visibleOption.subscribe(
+    //   value => {
+    //     this.navDisplay = value;
+    //   }
+    // )
   }
 
 }
+
