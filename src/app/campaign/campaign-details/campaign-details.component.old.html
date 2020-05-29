@@ -1,0 +1,24 @@
+<div style=" text-align: center;">
+        <h4><small>{{selectedCampaign?.slogan}}</small></h4>
+        <hr>
+           <img src="{{apiRootUrl}}{{selectedCampaign?.main_logo}}" >
+        <hr>
+        <h4>
+            <small>
+                Dates: {{startDate}} <b>To</b> {{endDate}}  
+            </small> 
+       </h4>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-primary" (click)="onBooking()" >Booking</button> &nbsp;
+                <button class="btn btn-primary" (click)= "onSchedule()">Schedule</button> &nbsp;
+                
+            </div>    
+        </div>
+</div>
+ <br>
+ <div class="row">
+    <div class="col-md-12">
+        <router-outlet></router-outlet>
+    </div>
+</div>

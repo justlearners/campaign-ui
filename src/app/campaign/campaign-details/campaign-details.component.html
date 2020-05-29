@@ -1,31 +1,65 @@
-
-
-
-<div style=" text-align: center;">
-        <h4><small>{{selectedCampaign?.slogan}}</small></h4>
-        <hr>
-                <img src="{{apiRootUrl}}{{selectedCampaign?.main_logo}}" >
-        <hr>
-
-        <h4>
-
-            <small>
-                Dates: {{startDate}} <b>To</b> {{endDate}}  
-            </small> 
-
-        </h4>
-
-        <div class="row">
-            <div class="col-md-12">
-                <button class="btn btn-primary" (click)="onBooking()" >Booking</button> &nbsp;
-                <button class="btn btn-primary" (click)= "onSchedule()">Schedule</button> &nbsp;
-                
-            </div>    
-        </div>
+<div class="container-fluid px-0">
+	<div class="row">
+		<div class="col-md-12">
+		
+			<div class="jumbotron">  				
+					<h4 class="text-center">
+						{{selectedCampaign?.slogan}}
+					</h4>             
+					<p> </p><p> </p><p> </p>
+                <div class="text-center"> <img class="img-fluid" alt="Bootstrap Image Preview" src="{{apiRootUrl}}{{selectedCampaign?.main_logo}}" class="" style="align:center;"></div>
+				<p></p>
+				<div class="text-center">
+                    <h4>
+                        <small>
+                            Dates: {{startDate}} <b>To</b> {{endDate}}  
+                        </small> 
+                   </h4>
+				</div>
+				<p></p>
+                <div>
+                    <h4>
+                        {{selectedCampaign?.name}}
+                    </h4>
+                </div>
+				<p>
+					{{selectedCampaign?.shortdesc}}
+				</p>
+				
+			
+			<div class="btn-group" role="group">
+				 
+				<button class="btn btn-secondary" (click)="onBooking()" type="button">
+					Book Your Time
+				</button> 
+				<button class="btn btn-secondary" (click)= "onSchedule()" type="button">
+					Check Slot
+				</button> 
+			</div>
+			<p> </p><p> </p>
+			<div class="container">
+				<div class="row">
+					Contact Persons: 
+				 </div>
+			  </div>
+			  <p> </p><p> </p>
+			<div class="row">
+				<div class="col-sm">
+					<div *ngIf='selectedCampaign.footer_logo1'>
+						<img class="img-fluid" alt="Bootstrap Image Preview" src="{{apiRootUrl}}{{selectedCampaign?.footer_logo1}}">
+					</div>
+				</div>
+				<div class="col-sm">
+						
+				</div>
+				<div class="col-sm">
+					<div *ngIf='selectedCampaign.footer_logo2'>
+						<img class="img-fluid" alt="Bootstrap Image Preview" src="{{apiRootUrl}}{{selectedCampaign?.footer_logo2}}">			
+					</div>
+				</div>
+			  </div>
+			  			
+		</div>
+		</div>
+	</div>
 </div>
- <br>
- <div class="row">
-    <div class="col-md-12">
-        <router-outlet></router-outlet>
-    </div>
- </div>
