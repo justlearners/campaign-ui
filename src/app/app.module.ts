@@ -21,6 +21,9 @@ import { CampaignStartComponent } from './campaign/campaign-start/campaign-start
 import { AppConfigModule } from './app-config/app-config.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HttpModule } from '@angular/http';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,7 @@ import { HttpModule } from '@angular/http';
     CampaignItemComponent,
     CampaignDetailsComponent,
     CampaignStartComponent,
-    NavbarComponent
+    NavbarComponent    
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,10 @@ import { HttpModule } from '@angular/http';
     HttpModule,
     FormsModule,
     HttpClientModule,
-    AppConfigModule.forRoot()
+    AppConfigModule.forRoot(),
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
     
   ],
   providers: [CampaignService, ScheduleService,NavbarService],

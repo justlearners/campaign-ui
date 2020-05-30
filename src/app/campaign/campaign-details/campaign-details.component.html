@@ -1,20 +1,21 @@
-<div class="container-fluid px-0">
+<div class="container-fluid border-custom">
 	<div class="row">
 		<div class="col-md-12">
 		
-			<div class="jumbotron">  				
-					<h4 class="text-center">
+			<div class="">  	
+				<p> </p><p> </p>			
+					<h2 class="text-center">
 						{{selectedCampaign?.slogan}}
-					</h4>             
+					</h2>             
 					<p> </p><p> </p><p> </p>
-                <div class="text-center"> <img class="img-fluid" alt="Bootstrap Image Preview" src="{{apiRootUrl}}{{selectedCampaign?.main_logo}}" class="" style="align:center;"></div>
+                <div class="text-center"> <img class="img-fluid" alt="Bootstrap Image Preview" src="{{apiRootUrl}}{{selectedCampaign?.main_logo}}"></div>
 				<p></p>
 				<div class="text-center">
-                    <h4>
+                    <h3>
                         <small>
                             Dates: {{startDate}} <b>To</b> {{endDate}}  
                         </small> 
-                   </h4>
+                   </h3>
 				</div>
 				<p></p>
                 <div>
@@ -23,21 +24,20 @@
                     </h4>
                 </div>
 				<p>
-					{{selectedCampaign?.shortdesc}}
+					{{selectedCampaign?.shortdesc}} {{selectedCampaign?.shortdesc}} {{selectedCampaign?.shortdesc}}{{selectedCampaign?.shortdesc}}{{selectedCampaign?.shortdesc}}{{selectedCampaign?.shortdesc}}
 				</p>
-				
-			
-			<div class="btn-group" role="group">
-				 
-				<button class="btn btn-secondary" (click)="onBooking()" type="button">
+			<div class="text-center">
+			<div>
+				<button class="btn btn-warning ml-3" (click)="onBooking()" type="button">
 					Book Your Time
-				</button> 
-				<button class="btn btn-secondary" (click)= "onSchedule()" type="button">
+				</button>
+				<button class="btn btn-warning ml-3" (click)= "onSchedule()" type="button">
 					Check Slot
 				</button> 
 			</div>
+			</div>
 			<p> </p><p> </p>
-			<div class="container">
+			<div class="container-fluid">
 				<div class="row">
 					Contact Persons: 
 				 </div>
@@ -50,15 +50,18 @@
 					</div>
 				</div>
 				<div class="col-sm">
-						
+					
 				</div>
 				<div class="col-sm">
-					<div *ngIf='selectedCampaign.footer_logo2'>
-						<img class="img-fluid" alt="Bootstrap Image Preview" src="{{apiRootUrl}}{{selectedCampaign?.footer_logo2}}">			
+					
+				</div>
+				<div class="col-sm">
+					<div *ngIf='selectedCampaign.footer_logo1'>
+						<img class="img-fluid" alt="Bootstrap Image Preview" src="{{apiRootUrl}}{{selectedCampaign?.footer_logo1}}">			
 					</div>
 				</div>
 			  </div>
-			  			
+			  <p> </p><p> </p>		
 		</div>
 		</div>
 	</div>

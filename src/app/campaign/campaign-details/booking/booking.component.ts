@@ -9,7 +9,7 @@ import { Booking, User } from './booking.model';
 import { ConfigService } from '../../../app-config/config.service';
 import { SlotModel } from '../../../app-config/config.model';
 import { NavbarService } from 'src/app/navbar/navbar.service';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-booking',
@@ -29,7 +29,10 @@ export class BookingComponent implements OnInit {
   displaySlots = [];
   temp = [];
 
-  constructor(public nav: NavbarService, private userBooking: UserBookingService, private route: ActivatedRoute,
+  constructor(
+    private toastr: ToastrService,
+    public nav: NavbarService, private userBooking: UserBookingService, 
+    private route: ActivatedRoute,
     private campaignService: CampaignService,
     private schedule: ScheduleService, private configService: ConfigService) {
 
@@ -64,6 +67,10 @@ export class BookingComponent implements OnInit {
           response => {
 
             this.slotList = response;
+            this.displaySlots=[];
+            this.slotList.filter((slot) => {
+              this.displaySlots.push(slot.config_value)
+           });
             console.log('this.slotList --', this.slotList);
           }
         );
@@ -82,8 +89,6 @@ export class BookingComponent implements OnInit {
   dateChanged(ev) {
     this.displaySlots = [];
     console.log("date changed -- " + ev);
-
-
     // to get id of booked slots
     this.temp = this.allBookings.filter((booking) => {
       return this.formatDate(booking.booking_date) == ev
@@ -91,7 +96,6 @@ export class BookingComponent implements OnInit {
       return resp.slot
     });
     console.log("Booked lot id [temp]  --  " + this.temp)
-
 //  to display available slots
     this.slotList.filter(
       (slot) => {
@@ -111,19 +115,12 @@ export class BookingComponent implements OnInit {
           })
         }
       });
-
     console.log("dispalySlots  ---  " + this.displaySlots)
-
   }
-
-
-
 
   onSubmit(f: NgForm) {
     //User user=new User(f.name,f.email,f.phone,f.address,f.city,f.country,'admin');
     //Booking booking=new Booking(cid,); 
-
-
     this.booking.slot = this.slotList.filter(
       slot => {
         return slot.config_value == this.booking.slot
@@ -133,10 +130,26 @@ export class BookingComponent implements OnInit {
     this.campaignService.saveBooking(this.booking).subscribe(
       response => {
         console.log('saveBooking--', response);
+        this.showSuccess('Booking Saved');
+      },
+      error => {
+        console.log('error in save--', error);
+        this.showError(error);
       }
     );
-
     f.onReset();
+  }
+  
+  showError(error) {
+    if(error.message.includes("DUP")){
+      this.toastr.error('Slot not available. Please select a new one.');
+    } else {
+      this.toastr.error('Sorry for unexpected Error. Please retry or contact admin.');
+    }
+    
+  }
+  showSuccess(msg) {
+    this.toastr.success(msg);
   }
 
   formatDate(date) {

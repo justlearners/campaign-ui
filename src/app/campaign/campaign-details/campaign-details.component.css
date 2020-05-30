@@ -1,5 +1,4 @@
-
-    .fit-image{
-        width: 100%;
-        object-fit: cover;
-  }
+.border-custom {
+    border-top: 15px solid #eb9534;
+    border-bottom: 15px solid #eb9534
+}

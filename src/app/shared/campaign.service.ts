@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Campaign } from './campaign.model';
 import { Booking } from '../campaign/campaign-details/booking/booking.model';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {catchError, map } from 'rxjs/operators';
 import { ConfigService } from '../app-config/config.service';
 import { Http, Response, RequestOptions, Headers, ResponseContentType } from '@angular/http';
 import { HttpHeaders, HttpClient } from '@angular/common/http'
@@ -63,12 +63,15 @@ export class CampaignService{
       console.log('booking--',JSON.stringify(booking));
        const formData = new FormData();
        formData.append('booking', JSON.stringify(booking));
-       return this.httpClient.post(apiUrl,JSON.stringify(booking),httpOptions).pipe(map(res => {
+       return this.httpClient.post(apiUrl,JSON.stringify(booking),httpOptions).pipe(
+           map(res => {
             console.log('res1--',res);
             return res;
-                }));       
+                })              
+                );       
     }
-
+    
+ 
     getApiRootUrl(){
         return this.configService.api.url.apiRootUrl;        
     }
