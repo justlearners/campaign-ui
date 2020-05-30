@@ -46,7 +46,7 @@
     
     <div class="form-group">
         <label for="date">Date:</label> &nbsp;
-        <input type="date" id="date" name="date" value='' required
+        <input type="date" (ngModelChange)="dateChanged($event)" id="date" name="date" value='' required
             min="{{startDate}}" max="{{endDate}}" [(ngModel)]="booking.booking_date" #date="ngModel"> &nbsp;<br>
             
         <span class="text-danger" *ngIf="!date.valid && date.touched">Please select date! </span>

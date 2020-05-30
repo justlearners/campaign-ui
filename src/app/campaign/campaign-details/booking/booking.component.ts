@@ -80,10 +80,8 @@ export class BookingComponent implements OnInit {
             console.log('this.allBookings --', this.allBookings);
           }
         );
-
       }
     )
-
   }
 
   dateChanged(ev) {
