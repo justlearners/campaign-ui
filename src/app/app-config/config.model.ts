@@ -21,7 +21,7 @@ export class AppConfigModel {
             this.baseUrl = this.protocol + '//' + this.hostname + ':8085';
         }
         else{
-            this.baseUrl = this.protocol + '//' + this.hostname ;
+            this.baseUrl = this.protocol + '//' + this.hostname + ':8085';
         }
     }
 
