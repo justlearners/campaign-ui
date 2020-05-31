@@ -8,9 +8,20 @@ import { NavbarService } from 'src/app/navbar/navbar.service';
 })
 export class CampaignComponent implements OnInit {
 
-  constructor(public nav: NavbarService) { }
+
+  protocol = window.location.protocol;
+  hostname = window.location.hostname;
+
+
+  constructor(public nav: NavbarService) { 
+    
+  }
 
   ngOnInit() {  
     this.nav.show();
+    console.log("protocol is -- "+this.protocol);
+    console.log("hostname is -- "+this.hostname)
   }
+
+
 }
