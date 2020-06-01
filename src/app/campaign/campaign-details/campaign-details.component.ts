@@ -34,6 +34,11 @@ export class CampaignDetailsComponent implements OnInit {
           console.log('this.selectedCampaign--',this.selectedCampaign);
           this.startDate = this.formatDate(this.selectedCampaign.startdate);
           this.endDate = this.formatDate(this.selectedCampaign.enddate);
+          },
+          error => {
+            console.log('error in campaign details--', error);
+            this.router.navigate(['404']);
+            //this.showError(error);
           }
         );
         this.apiRootUrl=this.campaignService.getApiRootUrl()+"/";

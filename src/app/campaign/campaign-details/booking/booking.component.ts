@@ -7,7 +7,7 @@ import { ScheduleService } from 'src/app/shared/schedule.service';
 import { UserBookingService } from '../../../shared/userBooking.service';
 import { Booking, User } from './booking.model';
 import { ConfigService } from '../../../app-config/config.service';
-import { SlotModel } from '../../../app-config/config.model';
+import { SlotModel,StateModel } from '../../../app-config/config.model';
 import { NavbarService } from 'src/app/navbar/navbar.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -23,6 +23,7 @@ export class BookingComponent implements OnInit {
   booking: Booking = new Booking();
   selectedCampaign: Campaign = null;
   slotList: SlotModel[];
+  stateList: StateModel[];
   allBookings: Booking[];
   startDate: string;
   endDate: string;
@@ -72,6 +73,12 @@ export class BookingComponent implements OnInit {
               this.displaySlots.push(slot.config_value)
            });
             console.log('this.slotList --', this.slotList);
+          }
+        );
+        this.configService.getStateList().subscribe(
+          response => {
+            this.stateList = response;            
+            console.log('this.stateList --', this.stateList);
           }
         );
         this.campaignService.getAllBookings(this.cid).subscribe(

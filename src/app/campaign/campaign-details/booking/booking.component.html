@@ -6,7 +6,7 @@
         <label for="name">Name:</label>
         <input type="text" class="form-control" id="uname" name="uname" required [(ngModel)]="booking.usr.uname"
             #name="ngModel">
-        <span class="text-danger" *ngIf="!name.valid && name.touched">Please your name! </span>
+        <span class="text-danger" *ngIf="!name.valid && name.touched">Please enter name! </span>
     </div>
 
 
@@ -15,7 +15,7 @@
 
         <textarea class="form-control" id="address" rows="3" name="address" required [(ngModel)]="booking.usr.address"
             #textarea="ngModel"></textarea>
-        <span class="text-danger" *ngIf="!textarea.valid && textarea.touched">Please enter description! </span>
+        <span class="text-danger" *ngIf="!textarea.valid && textarea.touched">Please enter address! </span>
     </div>
 
     <div class="form-group">
@@ -25,6 +25,13 @@
         <span class="text-danger" *ngIf="!city.valid && city.touched">Please enter city! </span>
     </div>
 
+    <div class="form-group ">
+        <label for="states">State</label>
+        <select id="states" class="form-control" name="states" [(ngModel)]="booking.usr.state" #state="ngModel" required >
+            <option *ngFor = "let state of stateList" value="{{state.id}}"> {{state.state_name}}</option>
+        </select>
+        <span class="text-danger" *ngIf="!state.valid && state.touched">Please enter state! </span>
+    </div>
 
     <div class="form-group">
         <label for="email">Email:</label>

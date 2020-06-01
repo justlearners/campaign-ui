@@ -13,6 +13,7 @@ export class User  {
     public contact :string; 
     public address :string;
     public city: string;
+    public state: string;
     public country: string;
     public created_by: string
  }

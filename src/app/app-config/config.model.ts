@@ -70,6 +70,7 @@ export class ApiModel {
         campaignDetailsUrl = this.apiRoot + '/campaignDetails?cid={cid}';
         allBookingsUrl = this.apiRoot + '/bookingFullDetails?cid={cid}';
         masterSlotListUrl = this.apiRoot + '/slotList';
+        stateListUrl = this.apiRoot + '/stateList?cntryId={cntryId}';
         saveBookingUrl = this.apiRoot + '/saveBooking';
     }
 
@@ -82,6 +83,12 @@ export class SlotModel {
     id: string;
     config_key: string;
     config_value: string;
+}
+
+export class StateModel {
+    id: string;
+    state_name: string;
+    country_id: string;
 }
 
 export class LoginModel {

@@ -24,6 +24,7 @@ import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { ToastrModule } from 'ngx-toastr';
+import { PageNotFoundComponent } from './shared/error/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ToastrModule } from 'ngx-toastr';
     CampaignItemComponent,
     CampaignDetailsComponent,
     CampaignStartComponent,
-    NavbarComponent    
+    NavbarComponent,
+    PageNotFoundComponent    
   ],
   imports: [
     BrowserModule,
