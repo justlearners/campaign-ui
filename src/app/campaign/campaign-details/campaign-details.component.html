@@ -39,10 +39,11 @@
 			<p> </p><p> </p>
 			<div class="container-fluid">
 				<div class="row">
-					संपर्क सूत्र: 
+					Contacts: {{selectedCampaign?.contact1_name}} : {{selectedCampaign?.contact1_contact}}
+					, {{selectedCampaign?.contact2_name}} : {{selectedCampaign?.contact2_contact}}
 				 </div>
 			  </div>
-			  <p> </p><p> </p>
+			  <p> </p>
 			<div class="row">
 				<div class="col-sm">
 					<div *ngIf='selectedCampaign?.footer_logo1'>
