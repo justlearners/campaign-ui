@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Campaign } from 'src/app/shared/campaign.model';
 import { CampaignService } from 'src/app/shared/campaign.service';
 import { ScheduleService } from 'src/app/shared/schedule.service';
 import { UserBookingService } from '../../../shared/userBooking.service';
 import { Booking, User } from './booking.model';
 import { ConfigService } from '../../../app-config/config.service';
-import { SlotModel,StateModel } from '../../../app-config/config.model';
+import { SlotModel, StateModel } from '../../../app-config/config.model';
 import { NavbarService } from 'src/app/navbar/navbar.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -29,21 +29,22 @@ export class BookingComponent implements OnInit {
   endDate: string;
   displaySlots = [];
   temp = [];
+  formDisplay: boolean;
+
 
   constructor(
     private toastr: ToastrService,
-    public nav: NavbarService, private userBooking: UserBookingService, 
+    public nav: NavbarService, private userBooking: UserBookingService,
     private route: ActivatedRoute,
     private campaignService: CampaignService,
-    private schedule: ScheduleService, private configService: ConfigService) {
+    private schedule: ScheduleService, private configService: ConfigService,
+    private router: Router) {
 
-    // schedule.scheduleAdded.subscribe((schedule)=>{
-    //   console.log(schedule);
-    // })
   }
 
   ngOnInit(): void {
     this.nav.hide();
+    this.formDisplay = false;
     this.route.params.subscribe(
       (params: Params) => {
         this.cid = params['id'];
@@ -68,16 +69,16 @@ export class BookingComponent implements OnInit {
           response => {
 
             this.slotList = response;
-            this.displaySlots=[];
+            this.displaySlots = [];
             this.slotList.filter((slot) => {
               this.displaySlots.push(slot.config_value)
-           });
+            });
             console.log('this.slotList --', this.slotList);
           }
         );
         this.configService.getStateList().subscribe(
           response => {
-            this.stateList = response;            
+            this.stateList = response;
             console.log('this.stateList --', this.stateList);
           }
         );
@@ -94,6 +95,7 @@ export class BookingComponent implements OnInit {
   dateChanged(ev) {
     this.displaySlots = [];
     console.log("date changed -- " + ev);
+
     // to get id of booked slots
     this.temp = this.allBookings.filter((booking) => {
       return this.formatDate(booking.booking_date) == ev
@@ -101,7 +103,8 @@ export class BookingComponent implements OnInit {
       return resp.slot
     });
     console.log("Booked lot id [temp]  --  " + this.temp)
-//  to display available slots
+
+    //  to display available slots
     this.slotList.filter(
       (slot) => {
         if (this.temp.length == 0) {
@@ -144,14 +147,14 @@ export class BookingComponent implements OnInit {
     );
     f.onReset();
   }
-  
+
   showError(error) {
-    if(error.message.includes("DUP")){
+    if (error.message.includes("DUP")) {
       this.toastr.error('Slot not available. Please select a new one.');
     } else {
       this.toastr.error('Sorry for unexpected Error. Please retry or contact admin.');
     }
-    
+
   }
   showSuccess(msg) {
     this.toastr.success(msg);
@@ -172,6 +175,15 @@ export class BookingComponent implements OnInit {
 
     return [year, month, day].join('-');
   }
+
+  onExistingUser() {
+    this.formDisplay = false;
+  }
+
+  onNewUser() {
+    this.formDisplay = true;
+  }
+
 
 
 

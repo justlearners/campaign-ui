@@ -12,11 +12,12 @@ import { CampaignStartComponent } from './campaign/campaign-start/campaign-start
 
 const routes: Routes = [
   {
-    path: 'campaignd', component: CampaignComponent, children: [
-      {path : '' , component : PageNotFoundComponent},
+    path: 'campaign', component: CampaignComponent, children: [
+     // {path : '' , component : PageNotFoundComponent},
       { path: ':id', component: CampaignDetailsComponent },
       { path: ':id/booking', component: BookingComponent },
-      { path: ':id/schedule', component: ScheduleComponent }
+      { path: ':id/schedule', component: ScheduleComponent },
+     // { path: '**', component: PageNotFoundComponent }
     ]
   },
   { path: 'about-us', component: AboutUsComponent },

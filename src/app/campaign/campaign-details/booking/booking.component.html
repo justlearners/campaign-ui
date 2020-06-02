@@ -1,80 +1,148 @@
 <div class="container">
-
-    <form (ngSubmit)=onSubmit(f) #f="ngForm">
-
-    <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" class="form-control" id="uname" name="uname" required [(ngModel)]="booking.usr.uname"
-            #name="ngModel">
-        <span class="text-danger" *ngIf="!name.valid && name.touched">Please enter name! </span>
-    </div>
-
-
-    <div class="form-group">
-        <label for="address">Address:</label>
-
-        <textarea class="form-control" id="address" rows="3" name="address" required [(ngModel)]="booking.usr.address"
-            #textarea="ngModel"></textarea>
-        <span class="text-danger" *ngIf="!textarea.valid && textarea.touched">Please enter address! </span>
-    </div>
-
-    <div class="form-group">
-        <label for="city">City:</label>
-        <input type="text" class="form-control" id="city" name="city" required [(ngModel)]="booking.usr.city"
-            #city="ngModel">
-        <span class="text-danger" *ngIf="!city.valid && city.touched">Please enter city! </span>
-    </div>
-
-    <div class="form-group ">
-        <label for="states">State</label>
-        <select id="states" class="form-control" name="states" [(ngModel)]="booking.usr.state" #state="ngModel" required >
-            <option *ngFor = "let state of stateList" value="{{state.id}}"> {{state.state_name}}</option>
-        </select>
-        <span class="text-danger" *ngIf="!state.valid && state.touched">Please enter state! </span>
-    </div>
-
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" id="email" name="email" required [(ngModel)]="booking.usr.email" email
-            #email="ngModel">
-        <span class="text-danger" *ngIf="!email.valid && email.touched">Please enter valid email! </span>
-    </div>
-
-
-    <div class="form-group">
-        <label for="phone">Phone Number:</label>
-        <input type="number" class="form-control" id="phone" name="phone" pattern="[1-9]{1}[0-9]{9}" required
-            [(ngModel)]="booking.usr.contact" #phone="ngModel">
-        <span class="text-danger" *ngIf="!phone.valid && phone.touched">Please enter 10 digit phone number! </span>
+    <div class="row">
+        <button type="button" class="btn btn-outline-secondary " [ngClass]="{'active': !formDisplay}"
+            (click)="onExistingUser()"> Existing User</button> &nbsp;&nbsp;
+        <button type="button" class="btn btn-outline-secondary " [ngClass]="{'active': formDisplay}"
+            (click)="onNewUser()"> New User</button>
     </div>
 
 
 
-    
-    <div class="form-group">
-        <label for="date">Date:</label> &nbsp;
-        <input type="date" (ngModelChange)="dateChanged($event)" id="date" name="date" value='' required
-            min="{{startDate}}" max="{{endDate}}" [(ngModel)]="booking.booking_date" #date="ngModel"> &nbsp;<br>
-            
-        <span class="text-danger" *ngIf="!date.valid && date.touched">Please select date! </span>
+    <div class="row" *ngIf="!formDisplay">
+        <form (ngSubmit)=onSubmit(f) #f="ngForm">
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="number" class="form-control" id="phone" name="phone" pattern="[1-9]{1}[0-9]{9}" required
+                    [(ngModel)]="booking.usr.contact" #phone="ngModel">
+                <span class="text-danger" *ngIf="!phone.valid && phone.touched">Please enter 10 digit phone number!
+                </span>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label for="date">Date:</label> &nbsp;
+                <input type="date" (ngModelChange)="dateChanged($event)" id="date" name="date" value='' required
+                    min="{{startDate}}" max="{{endDate}}" [(ngModel)]="booking.booking_date" #date="ngModel"> &nbsp;<br>
+
+                <span class="text-danger" *ngIf="!date.valid && date.touched">Please select date! </span>
+            </div>
+            <br>
+            <div class="form-group ">
+                <label for="timeSlot">Available Time Slot</label>
+                <select id="timeSlot" class="form-control" name="timeSlot" [(ngModel)]="booking.slot" #slot="ngModel"
+                    required>
+                    <option value=""></option>
+                    <option *ngFor="let slot of displaySlots"> {{slot}}</option>
+
+                </select>
+                <span class="text-danger" *ngIf="!slot.valid && slot.touched && displaySlots.length !==0 ">Please select
+                    a slot! </span>
+                <span class="text-danger" *ngIf="displaySlots.length ==0 && slot.touched && date.touched">No slots
+                    available for this date! </span>
+                <span class="text-danger" *ngIf="!slot.valid && slot.touched && date.untouched ">Please select date
+                    first! </span>
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button> &nbsp;
+
+        </form>
     </div>
 
-    <div class="form-group ">
-        <label for="timeSlot">Available Time Slot</label>
-        <select id="timeSlot" class="form-control" name="timeSlot" [(ngModel)]="booking.slot" #slot="ngModel" required >
-            <option value=""></option>
-            <option *ngFor = "let slot of displaySlots"> {{slot}}</option>
-            
-        </select>
-        <span class="text-danger" *ngIf="!slot.valid && slot.touched && displaySlots.length !==0 ">Please select a slot! </span>
-        <span class="text-danger" *ngIf="displaySlots.length ==0 && slot.touched && date.touched">No slots available for this date! </span>
-        <span class="text-danger" *ngIf="!slot.valid && slot.touched && date.untouched ">Please select date first! </span>
+
+
+
+
+
+    <div class="row" *ngIf="formDisplay">
+
+        <form (ngSubmit)=onSubmit(f) #f="ngForm">
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="uname" name="uname" required [(ngModel)]="booking.usr.uname"
+                    #name="ngModel">
+                <span class="text-danger" *ngIf="!name.valid && name.touched">Please enter name! </span>
+            </div>
+
+
+            <div class="form-group">
+                <label for="address">Address:</label>
+
+                <textarea class="form-control" id="address" rows="3" name="address" required
+                    [(ngModel)]="booking.usr.address" #textarea="ngModel"></textarea>
+                <span class="text-danger" *ngIf="!textarea.valid && textarea.touched">Please enter address! </span>
+            </div>
+
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" class="form-control" id="city" name="city" required [(ngModel)]="booking.usr.city"
+                    #city="ngModel">
+                <span class="text-danger" *ngIf="!city.valid && city.touched">Please enter city! </span>
+            </div>
+
+            <div class="form-group ">
+                <label for="states">State</label>
+                <select id="states" class="form-control" name="states" [(ngModel)]="booking.usr.state" #state="ngModel"
+                    required>
+                    <option *ngFor="let state of stateList" value="{{state.id}}"> {{state.state_name}}</option>
+                </select>
+                <span class="text-danger" *ngIf="!state.valid && state.touched">Please enter state! </span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required
+                    [(ngModel)]="booking.usr.email" email #email="ngModel">
+                <span class="text-danger" *ngIf="!email.valid && email.touched">Please enter valid email! </span>
+            </div>
+
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="number" class="form-control" id="phone" name="phone" pattern="[1-9]{1}[0-9]{9}" required
+                    [(ngModel)]="booking.usr.contact" #phone="ngModel">
+                <span class="text-danger" *ngIf="!phone.valid && phone.touched">Please enter 10 digit phone number!
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date:</label> &nbsp;
+                <input type="date" (ngModelChange)="dateChanged($event)" id="date" name="date" value='' required
+                    min="{{startDate}}" max="{{endDate}}" [(ngModel)]="booking.booking_date" #date="ngModel"> &nbsp;<br>
+
+                <span class="text-danger" *ngIf="!date.valid && date.touched">Please select date! </span>
+            </div>
+
+            <div class="form-group ">
+                <label for="timeSlot">Available Time Slot</label>
+                <select id="timeSlot" class="form-control" name="timeSlot" [(ngModel)]="booking.slot" #slot="ngModel"
+                    required>
+                    <option value=""></option>
+                    <option *ngFor="let slot of displaySlots"> {{slot}}</option>
+
+                </select>
+                <span class="text-danger" *ngIf="!slot.valid && slot.touched && displaySlots.length !==0 ">Please select
+                    a slot! </span>
+                <span class="text-danger" *ngIf="displaySlots.length ==0 && slot.touched && date.touched">No slots
+                    available for this date! </span>
+                <span class="text-danger" *ngIf="!slot.valid && slot.touched && date.untouched ">Please select date
+                    first! </span>
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button> &nbsp;
+        </form>
+
+
     </div>
 
+    <div class="row">
+        <a [routerLink]="['/campaign',cid]"> Go back</a>
 
-
-    <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button> &nbsp;
-</form>
+    </div>
 
 
 </div>

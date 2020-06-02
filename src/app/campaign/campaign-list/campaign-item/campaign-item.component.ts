@@ -26,7 +26,7 @@ export class CampaignItemComponent implements OnInit {
 
   openCampaignInNewWindow(campaign) {
       const url = this.router.serializeUrl(
-      this.router.createUrlTree([`/campaignd/${campaign.cid}`])
+      this.router.createUrlTree([`/campaign/${campaign.cid}`])
     );
     window.open(url, '_blank');
   }
