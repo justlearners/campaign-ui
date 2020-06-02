@@ -1,4 +1,10 @@
 
+.panel-body {
+    overflow: scroll;
+    height: 100px;
+}
+
+
 .container{
     margin-top: 40px;
    
