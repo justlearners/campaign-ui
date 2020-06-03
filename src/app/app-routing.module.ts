@@ -16,13 +16,13 @@ const routes: Routes = [
      // {path : '' , component : PageNotFoundComponent},
       { path: ':id', component: CampaignDetailsComponent },
       { path: ':id/booking', component: BookingComponent },
-      { path: ':id/schedule', component: ScheduleComponent },
-     // { path: '**', component: PageNotFoundComponent }
+      { path: ':id/schedule', component: ScheduleComponent }
+     
     ]
   },
   { path: 'about-us', component: AboutUsComponent },
   { path: '404', component: PageNotFoundComponent },
-  { path: 'campaign', component: CampaignComponent },
+ 
   { path: '', redirectTo: "/campaign", pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 
