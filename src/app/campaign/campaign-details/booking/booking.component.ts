@@ -152,7 +152,7 @@ export class BookingComponent implements OnInit {
     if (error.message.includes("DUP")) {
       this.toastr.error('Slot not available. Please select a new one.');
     } else {
-      this.toastr.error('Sorry for unexpected Error. Please retry or contact admin.');
+      this.toastr.error(error.error);
     }
 
   }
