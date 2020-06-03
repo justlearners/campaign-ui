@@ -139,13 +139,13 @@ export class BookingComponent implements OnInit {
       response => {
         console.log('saveBooking--', response);
         this.showSuccess('Booking Saved');
+        f.onReset();
       },
       error => {
         console.log('error in save--', error);
         this.showError(error);
       }
-    );
-    f.onReset();
+    );    
   }
 
   showError(error) {
