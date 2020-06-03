@@ -1,13 +1,13 @@
 <div class="container">
+   
     <div class="">
+      
         <button type="button" class="btn btn-outline-secondary " [ngClass]="{'active': !formDisplay}"
             (click)="onExistingUser()"> Existing User</button> &nbsp;&nbsp;
         <button type="button" class="btn btn-outline-secondary " [ngClass]="{'active': formDisplay}"
             (click)="onNewUser()"> New User</button>
     </div>
-
-
-
+    <br><br>
     <div class="" *ngIf="!formDisplay">
         <form (ngSubmit)=onSubmit(f) #f="ngForm">
             <div class="form-group">
@@ -49,11 +49,6 @@
 
         </form>
     </div> 
-
-
-
-
-
 
     <div class="" *ngIf="formDisplay">
 
@@ -136,13 +131,13 @@
             <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button> &nbsp;
         </form>
 
-<!-- 
+ 
     </div>
-
-    <div class="row">
+    <br><br>
+    <div class="">
         <a [routerLink]="['/campaign',cid]"> Go back</a>
 
-    </div> -->
+    </div> 
 
 
 </div>
