@@ -56,7 +56,7 @@
 
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" class="form-control" id="uname" name="uname" required [(ngModel)]="booking.usr.uname"
+                <input type="text" class="form-control" id="uname" name="uname" maxlength="40" required [(ngModel)]="booking.usr.uname"
                     #name="ngModel">
                 <span class="text-danger" *ngIf="!name.valid && name.touched">Please enter name! </span>
             </div>
@@ -65,14 +65,14 @@
             <div class="form-group">
                 <label for="address">Address:</label>
 
-                <textarea class="form-control" id="address" rows="3" name="address" required
+                <textarea class="form-control" id="address" rows="3" name="address" maxlength="250" 
                     [(ngModel)]="booking.usr.address" #textarea="ngModel"></textarea>
                 <span class="text-danger" *ngIf="!textarea.valid && textarea.touched">Please enter address! </span>
             </div>
 
             <div class="form-group">
                 <label for="city">City:</label>
-                <input type="text" class="form-control" id="city" name="city" required [(ngModel)]="booking.usr.city"
+                <input type="text" class="form-control" id="city" name="city" maxlength="80" required [(ngModel)]="booking.usr.city"
                     #city="ngModel">
                 <span class="text-danger" *ngIf="!city.valid && city.touched">Please enter city! </span>
             </div>
@@ -88,7 +88,7 @@
 
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required
+                <input type="email" class="form-control" id="email" name="email" required maxlength="80"
                     [(ngModel)]="booking.usr.email" email #email="ngModel">
                 <span class="text-danger" *ngIf="!email.valid && email.touched">Please enter valid email! </span>
             </div>
