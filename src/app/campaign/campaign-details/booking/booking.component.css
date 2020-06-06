@@ -16,7 +16,9 @@
     margin-right: auto;
 }
 
-
+button:disabled {
+    background-color: grey;
+}
 
 
 input.ng-invalid.ng-touched{

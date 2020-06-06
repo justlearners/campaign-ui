@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, NavigationEnd } from '@angular/router';
 import { Campaign } from 'src/app/shared/campaign.model';
 import { CampaignService } from 'src/app/shared/campaign.service';
 import { ScheduleService } from 'src/app/shared/schedule.service';
@@ -28,8 +28,10 @@ export class BookingComponent implements OnInit {
   startDate: string;
   endDate: string;
   displaySlots = [];
-  temp = [];
   formDisplay: boolean;
+  currentDate: Date;
+
+
 
 
   constructor(
@@ -45,6 +47,7 @@ export class BookingComponent implements OnInit {
   ngOnInit(): void {
     this.nav.hide();
     this.formDisplay = false;
+    this.currentDate = new Date();
     this.route.params.subscribe(
       (params: Params) => {
         this.cid = params['id'];
@@ -58,7 +61,8 @@ export class BookingComponent implements OnInit {
             this.selectedCampaign = response[0];
             console.log('this.selectedCampaign--', this.selectedCampaign);
 
-            this.startDate = this.formatDate(this.selectedCampaign.startdate);
+            //to get start and end date
+            this.startDate = this.onMinDate(this.selectedCampaign.startdate, this.currentDate);
             this.endDate = this.formatDate(this.selectedCampaign.enddate);
             console.log('start date is - ' + this.startDate);
             console.log('end date is - ' + this.endDate);
@@ -66,7 +70,7 @@ export class BookingComponent implements OnInit {
           error => {
             console.log('error in campaign details--', error);
             this.router.navigate(['404']);
-            //this.showError(error);
+
           }
 
         );
@@ -74,10 +78,6 @@ export class BookingComponent implements OnInit {
           response => {
 
             this.slotList = response;
-            // this.displaySlots = [];
-            // this.slotList.filter((slot) => {
-            //   this.displaySlots.push(slot.config_value)
-            // });
             console.log('this.slotList --', this.slotList);
           }
         );
@@ -113,28 +113,30 @@ export class BookingComponent implements OnInit {
       console.log("No slot available")
     } else {
       for (var indx in this.slotList) {
-          var slot=this.slotList[indx];
-          if(!this.chkIfSlotBooked(slot.id,bookedSlots)) {
-              this.displaySlots.push(slot.config_value);
-          }
-       }
-      }   
+        var slot = this.slotList[indx];
+        if (!this.chkIfSlotBooked(slot.id, bookedSlots)) {
+          this.displaySlots.push(slot.config_value);
+        }
+      }
+    }
     console.log("dispalySlots  ---  " + this.displaySlots)
   }
-
-  chkIfSlotBooked(slotId,slotArry){
-    var slotExists=false;
+  // to display available slots
+  chkIfSlotBooked(slotId, slotArry) {
+    var slotExists = false;
     for (var indx in slotArry) {
       if (slotArry[indx] == slotId) {
-        slotExists=true;
-      }   
+        slotExists = true;
+      }
     }
     return slotExists;
   }
 
+
+
+
   onSubmit(f: NgForm) {
-    //User user=new User(f.name,f.email,f.phone,f.address,f.city,f.country,'admin');
-    //Booking booking=new Booking(cid,); 
+    
     this.booking.slot = this.slotList.filter(
       slot => {
         return slot.config_value == this.booking.slot
@@ -146,12 +148,15 @@ export class BookingComponent implements OnInit {
         console.log('saveBooking--', response);
         this.showSuccess('Booking Saved');
         f.onReset();
+        this.router.navigate(["/campaign", this.cid], { relativeTo: this.route });
       },
       error => {
         console.log('error in save--', error);
         this.showError(error);
       }
     );
+
+
   }
 
   showError(error) {
@@ -182,11 +187,26 @@ export class BookingComponent implements OnInit {
     return [year, month, day].join('-');
   }
 
-  onExistingUser() {
+  onExistingUser(f: NgForm) {
+    f.onReset();
     this.formDisplay = false;
   }
 
   onNewUser() {
     this.formDisplay = true;
   }
+
+
+
+  onMinDate(s, c) {
+    let sDate = Date.parse(this.formatDate(s));
+    let cDate = Date.parse(this.formatDate(c));
+    let minDate = (cDate >= sDate) ? cDate : sDate;
+
+    return this.formatDate(new Date(minDate))
+  }
+
+
+
+
 }
