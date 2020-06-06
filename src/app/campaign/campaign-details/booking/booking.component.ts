@@ -189,8 +189,4 @@ export class BookingComponent implements OnInit {
   onNewUser() {
     this.formDisplay = true;
   }
-
-
-
-
 }
