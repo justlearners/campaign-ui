@@ -8,6 +8,8 @@ import {NavbarService} from '../navbar/navbar.service'
 })
 export class HeaderComponent implements OnInit {
 
+
+  headerBrand = "Quick Campaign";
   navDisplay:boolean = true;
 
   constructor(public nav: NavbarService) {

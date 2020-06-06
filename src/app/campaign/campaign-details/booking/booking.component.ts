@@ -62,6 +62,11 @@ export class BookingComponent implements OnInit {
             this.endDate = this.formatDate(this.selectedCampaign.enddate);
             console.log('start date is - ' + this.startDate);
             console.log('end date is - ' + this.endDate);
+          },
+          error => {
+            console.log('error in campaign details--', error);
+            this.router.navigate(['404']);
+            //this.showError(error);
           }
 
         );
@@ -69,10 +74,10 @@ export class BookingComponent implements OnInit {
           response => {
 
             this.slotList = response;
-            this.displaySlots = [];
-            this.slotList.filter((slot) => {
-              this.displaySlots.push(slot.config_value)
-            });
+            // this.displaySlots = [];
+            // this.slotList.filter((slot) => {
+            //   this.displaySlots.push(slot.config_value)
+            // });
             console.log('this.slotList --', this.slotList);
           }
         );
@@ -114,13 +119,15 @@ export class BookingComponent implements OnInit {
           console.log("No slot available")
         }
         else {
-          this.temp.filter((val) => {
-
-            if (val == slot.id) {
+          for (let i = 0; i<this.temp.length; i++) {
+          console.log(typeof(this.temp[i]))
+            if ((this.temp[i]) == slot.id) {
             }
             else
-              this.displaySlots.push(slot.config_value)
-          })
+              {
+                this.displaySlots.push(slot.config_value)
+              }
+          }
         }
       });
     console.log("dispalySlots  ---  " + this.displaySlots)
@@ -145,7 +152,7 @@ export class BookingComponent implements OnInit {
         console.log('error in save--', error);
         this.showError(error);
       }
-    );    
+    );
   }
 
   showError(error) {
