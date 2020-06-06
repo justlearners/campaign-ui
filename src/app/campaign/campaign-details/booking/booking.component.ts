@@ -97,33 +97,34 @@ export class BookingComponent implements OnInit {
     console.log("date changed -- " + ev);
 
     // to get id of booked slots
-    this.temp = this.allBookings.filter((booking) => {
+    var bookedSlots = this.allBookings.filter((booking) => {
       return this.formatDate(booking.booking_date) == ev
     }).map((resp) => {
       return resp.slot
     });
-    console.log("Booked lot id [temp]  --  " + this.temp)
+    console.log("Booked slots  --  " + bookedSlots)
 
-    //  to display available slots
-    this.slotList.filter(
-      (slot) => {
-        if (this.temp.length == 0) {
-          this.displaySlots.push(slot.config_value)
-        }
-        else if (this.temp.length == this.slotList.length) {
-          console.log("No slot available")
-        }
-        else {
-          this.temp.filter((val) => {
-
-            if (val == slot.id) {
-            }
-            else
-              this.displaySlots.push(slot.config_value)
-          })
-        }
-      });
+    if (bookedSlots.length == this.slotList.length) {
+      console.log("No slot available")
+    } else {
+      for (var indx in this.slotList) {
+          var slot=this.slotList[indx];
+          if(!this.chkIfSlotBooked(slot.id,bookedSlots)) {
+              this.displaySlots.push(slot.config_value);
+          }
+       }
+      }   
     console.log("dispalySlots  ---  " + this.displaySlots)
+  }
+
+  chkIfSlotBooked(slotId,slotArry){
+    var slotExists=false;
+    for (var indx in slotArry) {
+      if (slotArry[indx] == slotId) {
+        slotExists=true;
+      }   
+    }
+    return slotExists;
   }
 
   onSubmit(f: NgForm) {
