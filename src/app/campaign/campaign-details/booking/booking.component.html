@@ -45,7 +45,7 @@
 
 
 
-            <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button> &nbsp;
+            <button type="submit" class="btn btn-primary" [disabled]="!f.valid" (click)="f.reset()">Submit</button> &nbsp;
 
         </form>
     </div> 
@@ -128,7 +128,7 @@
 
 
 
-            <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button> &nbsp;
+            <button type="submit" class="btn btn-primary" [disabled]="!f.valid" (click) = "f.reset()">Submit</button>
         </form>
 
  
