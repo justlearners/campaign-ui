@@ -136,11 +136,21 @@ export class BookingComponent implements OnInit {
 
 
   onSubmit(f: NgForm) {
-    
+
+    // trim input value
+    for (var x in this.booking.usr) {
+      if (typeof (this.booking.usr[x]) == "string") {
+        this.booking.usr[x] = this.booking.usr[x].trim();
+      }
+    }
+
+
+
     this.booking.slot = this.slotList.filter(
       slot => {
         return slot.config_value == this.booking.slot
       })[0].id;
+
 
     console.log('this.booking--', this.booking);
     this.campaignService.saveBooking(this.booking).subscribe(
@@ -148,7 +158,18 @@ export class BookingComponent implements OnInit {
         console.log('saveBooking--', response);
         this.showSuccess('Booking Saved');
         f.onReset();
-        this.router.navigate(["/campaign", this.cid], { relativeTo: this.route });
+        // this.router.navigate(["/campaign", this.cid], { relativeTo: this.route });
+
+        // refreshing booking slot 
+        this.campaignService.getAllBookings(this.cid).subscribe(
+          response => {
+            this.allBookings = response;
+          }
+        );
+
+
+
+
       },
       error => {
         console.log('error in save--', error);
@@ -192,7 +213,8 @@ export class BookingComponent implements OnInit {
     this.formDisplay = false;
   }
 
-  onNewUser() {
+  onNewUser(f: NgForm) {
+    f.onReset();
     this.formDisplay = true;
   }
 

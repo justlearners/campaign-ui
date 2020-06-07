@@ -1,7 +1,8 @@
 
 .panel-body {
     overflow: scroll;
-    height: 100px;
+    height: 100%;
+    width: 100%;
 }
 .border-custom {
     border-top: 15px solid #eb9534;

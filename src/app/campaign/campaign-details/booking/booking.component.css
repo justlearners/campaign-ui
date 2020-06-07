@@ -1,7 +1,8 @@
 
 .panel-body {
     overflow: scroll;
-    height: 100px;
+    height: 100%;
+    width: 100%;
 }
 
 
@@ -21,26 +22,28 @@ button:disabled {
 }
 
 
-input.ng-invalid.ng-touched{
-    border-right: 4px solid red;
+input.ng-invalid{
+    border-right: 4px solid tomato;
 }
 
-select.ng-invalid.ng-touched{
-    border-right: 4px solid red; ;
+select.ng-invalid{
+    border-right: 4px solid tomato; ;
 }
 
-textarea.ng-invalid.ng-touched{
-    border-right: 4px solid red;
+textarea.ng-invalid.ng-dirty{
+    border-right: 4px solid tomato;
 }
 
-input.ng-valid.ng-touched{
-    border-right: 4px solid green;
+input.ng-valid.ng-dirty{
+    border-right: 4px solid green;  
 }
 
 select.ng-valid.ng-touched{
     border-right: 4px solid green; ;
 }
 
-textarea.ng-valid.ng-touched{
+textarea.ng-valid.ng-dirty{
     border-right: 4px solid green;
 }
+
+
