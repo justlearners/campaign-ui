@@ -30,9 +30,9 @@ select.ng-invalid{
     border-right: 4px solid tomato; ;
 }
 
-textarea.ng-invalid.ng-dirty{
+/* textarea.ng-invalid.ng-dirty{
     border-right: 4px solid tomato;
-}
+} */
 
 input.ng-valid.ng-dirty{
     border-right: 4px solid green;  
@@ -41,9 +41,9 @@ input.ng-valid.ng-dirty{
 select.ng-valid.ng-touched{
     border-right: 4px solid green; ;
 }
-
+/* 
 textarea.ng-valid.ng-dirty{
     border-right: 4px solid green;
-}
+} */
 
 
