@@ -1,0 +1,15 @@
+<p>posterform works!</p>
+<div class="container">
+    <form (ngSubmit)=onSubmit(f) #f="ngForm">
+        <div class="">
+            <div class="form-group">
+                <label for="phone">Poster Title:</label>
+                <input type="text" class="form-control" id="phone" name="phone" pattern="[6-9]{1}[0-9]{9}" required
+                    [(ngModel)]="posterModel.title" #phone="ngModel">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+        </div>
+        </form>
+   <br><br>
+</div>

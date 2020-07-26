@@ -1,3 +1,16 @@
 <div  *ngIf='nav.visible' class="col-sm-12 sidenav nav justify-content-center">   
-    <app-campaign-list></app-campaign-list>
+    <div class="container-fluid">
+        Campaign List:
+        <app-campaign-list></app-campaign-list>
+    </div>
+    <div class="container-fluid">
+        <a  (click)="openPosterInNewWindow()"  style="cursor: pointer;">
+            Poster
+        </a>
+    </div>
+    <div class="container-fluid">
+        <a  (click)="openPosterFormInNewWindow()"  style="cursor: pointer;">
+            Poster Form
+        </a>
+    </div>   
 </div>

@@ -8,6 +8,8 @@ import { BookingComponent } from './campaign/campaign-details/booking/booking.co
 import { ScheduleComponent } from './campaign/campaign-details/schedule/schedule.component';
 import { CampaignDetailsComponent } from './campaign/campaign-details/campaign-details.component';
 import { CampaignStartComponent } from './campaign/campaign-start/campaign-start.component';
+import { PosterComponent } from './poster/poster.component';
+import { PosterformComponent } from './poster/posterform/posterform/posterform.component';
 
 
 const routes: Routes = [
@@ -22,7 +24,8 @@ const routes: Routes = [
   },
   { path: 'about-us', component: AboutUsComponent },
   { path: '404', component: PageNotFoundComponent },
- 
+  { path: 'poster', component: PosterComponent },
+  { path: 'posterform', component: PosterformComponent },
   { path: '', redirectTo: "/campaign", pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavbarService } from './navbar.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'sd-navbar',
@@ -9,5 +10,19 @@ import { NavbarService } from './navbar.service';
 
 export class NavbarComponent {
 
-  constructor( public nav: NavbarService ) {}
+  constructor( public nav: NavbarService,private router: Router ) {}
+
+  openPosterInNewWindow() {
+    const url = this.router.serializeUrl(
+    this.router.createUrlTree([`/poster`])
+  );
+  window.open(url, '_blank');
+}
+openPosterFormInNewWindow() {
+  const url = this.router.serializeUrl(
+  this.router.createUrlTree([`/posterform`])
+);
+window.open(url, '_blank');
+}
+
 }
