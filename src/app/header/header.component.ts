@@ -17,11 +17,7 @@ export class HeaderComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    //  this.navService.visibleOption.subscribe(
-    //   value => {
-    //     this.navDisplay = value;
-    //   }
-    // )
+    
   }
 
 }

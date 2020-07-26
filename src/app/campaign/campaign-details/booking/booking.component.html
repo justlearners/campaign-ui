@@ -16,7 +16,7 @@
                 <label for="phone">Phone Number:</label>
                 <input type="number" class="form-control" id="phone" name="phone" pattern="[6-9]{1}[0-9]{9}" required
                     [(ngModel)]="booking.usr.contact" #phone="ngModel">
-                <span class="text-danger" *ngIf="!phone.valid && phone.touched">Please enter 10 digit phone number!
+                <span class="text-danger" *ngIf="!phone.valid && phone.touched">Please enter valid 10 digit phone number!
                 </span>
             </div>
             <br>
@@ -52,23 +52,23 @@
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" class="form-control" id="uname" name="uname" maxlength="40" required
-                    [(ngModel)]="booking.usr.uname" #name="ngModel" pattern="[A-Za-z ]{3,50}">
-                <span class="text-danger" *ngIf="!name.valid && name.touched">Please enter name! </span>
+                    [(ngModel)]="booking.usr.uname" #name="ngModel" pattern="([ ]{0,}[A-Za-z]{1,}[A-Za-z .]{0,}){3,}">
+                <span class="text-danger" *ngIf="!name.valid && name.touched">Please enter valid name! </span>
             </div>
 
             <div class="form-group">
                 <label for="address">Address:</label>
 
                 <textarea class="form-control" id="address" rows="3" name="address" maxlength="250"
-                    [(ngModel)]="booking.usr.address" #textarea="ngModel"></textarea>
+                    [(ngModel)]="booking.usr.address" #textarea="ngModel" ></textarea>
                 <!-- <span class="text-danger" *ngIf="!textarea.valid && textarea.touched">Please enter address! </span> -->
             </div>
 
             <div class="form-group">
                 <label for="city">City:</label>
                 <input type="text" class="form-control" id="city" name="city" maxlength="80" required
-                    [(ngModel)]="booking.usr.city" #city="ngModel" pattern="[A-Za-z ]{3,50}">
-                <span class="text-danger" *ngIf="!city.valid && city.touched">Please enter city! </span>
+                    [(ngModel)]="booking.usr.city" #city="ngModel" pattern="([ ]{0,}[A-Za-z]{1,}[A-Za-z .]{0,}){3,}">
+                <span class="text-danger" *ngIf="!city.valid && city.touched">Please enter valid city! </span>
             </div>
 
             <div class="form-group ">
@@ -92,7 +92,7 @@
                 <label for="phone">Phone Number:</label>
                 <input type="number" class="form-control" id="phone" name="phone" pattern="[6-9]{1}[0-9]{9}" required
                     [(ngModel)]="booking.usr.contact" #phone="ngModel">
-                <span class="text-danger" *ngIf="!phone.valid && phone.touched">Please enter 10 digit phone number!
+                <span class="text-danger" *ngIf="!phone.valid && phone.touched">Please enter valid 10 digit phone number!
                 </span>
             </div>
 

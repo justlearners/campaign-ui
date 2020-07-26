@@ -101,25 +101,31 @@ export class BookingComponent implements OnInit {
     this.displaySlots = [];
     console.log("date changed -- " + ev);
 
-    // to get id of booked slots
-    var bookedSlots = this.allBookings.filter((booking) => {
-      return this.formatDate(booking.booking_date) == ev
-    }).map((resp) => {
-      return resp.slot
-    });
-    console.log("Booked slots  --  " + bookedSlots)
+    if (ev == null) {
+      this.displaySlots = [];
+    }
+    else {
+      // to get id of booked slots
+      var bookedSlots = this.allBookings.filter((booking) => {
+        return this.formatDate(booking.booking_date) == ev
+      }).map((resp) => {
+        return resp.slot
+      });
+      console.log("Booked slots  --  " + bookedSlots)
 
-    if (bookedSlots.length == this.slotList.length) {
-      console.log("No slot available")
-    } else {
-      for (var indx in this.slotList) {
-        var slot = this.slotList[indx];
-        if (!this.chkIfSlotBooked(slot.id, bookedSlots)) {
-          this.displaySlots.push(slot.config_value);
+      if (bookedSlots.length == this.slotList.length) {
+        console.log("No slot available")
+      } else {
+        for (var indx in this.slotList) {
+          var slot = this.slotList[indx];
+          if (!this.chkIfSlotBooked(slot.id, bookedSlots)) {
+            this.displaySlots.push(slot.config_value);
+          }
         }
       }
+      console.log("dispalySlots  ---  " + this.displaySlots)
+
     }
-    console.log("dispalySlots  ---  " + this.displaySlots)
   }
   // to display available slots
   chkIfSlotBooked(slotId, slotArry) {
@@ -136,15 +142,13 @@ export class BookingComponent implements OnInit {
 
 
   onSubmit(f: NgForm) {
-
+    console.log(f);
     // trim input value
     for (var x in this.booking.usr) {
       if (typeof (this.booking.usr[x]) == "string") {
-        this.booking.usr[x] = this.booking.usr[x].trim();
+        this.booking.usr[x] = this.booking.usr[x].replace(/\s+/g, ' ').trim();
       }
     }
-
-
 
     this.booking.slot = this.slotList.filter(
       slot => {
@@ -158,27 +162,22 @@ export class BookingComponent implements OnInit {
         console.log('saveBooking--', response);
         this.showSuccess('Booking Saved');
         f.onReset();
-        // this.router.navigate(["/campaign", this.cid], { relativeTo: this.route });
-
         // refreshing booking slot 
         this.campaignService.getAllBookings(this.cid).subscribe(
           response => {
             this.allBookings = response;
           }
         );
-
-
-
-
       },
       error => {
         console.log('error in save--', error);
         this.showError(error);
+        this.booking.slot = null;
       }
     );
-
-
   }
+
+
 
   showError(error) {
     if (error.message.includes("DUP")) {
@@ -186,11 +185,13 @@ export class BookingComponent implements OnInit {
     } else {
       this.toastr.error(error.error);
     }
-
   }
+
+
   showSuccess(msg) {
     this.toastr.success(msg);
   }
+
 
   formatDate(date) {
     var d = new Date(date),
@@ -204,14 +205,16 @@ export class BookingComponent implements OnInit {
     if (+day < 10) {
       day = '0' + day;
     }
-
     return [year, month, day].join('-');
   }
+
+
 
   onExistingUser(f: NgForm) {
     f.onReset();
     this.formDisplay = false;
   }
+
 
   onNewUser(f: NgForm) {
     f.onReset();
