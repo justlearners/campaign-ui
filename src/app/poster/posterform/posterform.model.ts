@@ -2,6 +2,7 @@ export class PosterModel {
     title? : string;
     subtitle?: string;
     imageTitle?: string;
+    mainImageUrl?: any;
     imageDesciptionLine1?: string;
     imageDesciptionLine2?: string;
     posterTopicDesciption?: string;
@@ -12,4 +13,5 @@ export class PosterModel {
     contactPersonName2: string;
     contactPersonPhone1: string;
     contactPersonPhone2: string;
+    footerImageUrl?: any;
 }

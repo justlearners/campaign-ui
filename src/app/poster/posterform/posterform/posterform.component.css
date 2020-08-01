@@ -1,0 +1,24 @@
+.wrapper {
+   /* background-image: url(../../../../assets/images/background/bg_2.png);*/
+   background-color: #FFFFE0;
+   color: #000080;
+}
+.maintitle{
+    color: #900C3F;
+    font-weight: bold;
+}
+.subtitle{
+    color: #00008B;
+}
+.imageTitle{
+    font-weight: bold;
+}
+.posterTopicDesciption {
+    font-weight: bold;
+    background-color: #FFE4B5;
+
+}
+.eventDate {
+    color: #900C3F;
+    font-weight: bold;
+}

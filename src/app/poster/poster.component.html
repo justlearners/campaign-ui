@@ -1,11 +1,11 @@
-<div class="container-fluid container-custom">
-	<div class="row">
+<div #cnvrtToImage class="border container-fluid container-custom">
+	<div  class="row">
 		<div class="col-md-12">
 		
 			<div class="">  	
 				<p> </p><p> </p>			
 					<h2 class="text-center">
-                        Business Webinar 2020
+                        {{posterModel.title}}
                     </h2>             
                     <h4 class="text-center">
                         How to get Instant Loan?
@@ -76,10 +76,13 @@
 						<img class="img-fluid" style="width:100%" alt="Bootstrap Image Preview" src="assets/images/dj_footer_1.png">
 					</div>
 				</div>
-			
+                
 			  </div>
-			  <p> </p><p> </p>		
+              <p> </p><p> </p>	
+              	
 		</div>
 		</div>
-	</div>
+    </div>
+   
 </div>
+<div> <button (click)="convertToImage()">Downlaod as Image</button> </div>

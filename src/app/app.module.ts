@@ -27,9 +27,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { PageNotFoundComponent } from './shared/error/page-not-found/page-not-found.component';
 import { PosterComponent } from './poster/poster.component';
 import { PosterformComponent } from './poster/posterform/posterform/posterform.component';
+import { DataService } from './shared/service/data.service'
 
 @NgModule({
   declarations: [
+
     AppComponent,
     HeaderComponent,
     CampaignComponent,
@@ -57,7 +59,7 @@ import { PosterformComponent } from './poster/posterform/posterform/posterform.c
     ToastrModule.forRoot()
     
   ],
-  providers: [CampaignService, ScheduleService,NavbarService],
+  providers: [CampaignService, ScheduleService,NavbarService,DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
