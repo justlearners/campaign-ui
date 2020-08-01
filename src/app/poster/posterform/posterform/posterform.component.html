@@ -1,4 +1,11 @@
 <div class="container">
+    <div class="row pageText">
+        Fill the below form to create dynamic Poster. Click on 'Download as Image' link to download the Poster.
+        <br>Happy Posting!!
+    </div>
+    <div class="row">
+
+    </div>
     <div class="row">
         <div class="col">
                 <form (ngSubmit)=onSubmit(f) #f="ngForm">
@@ -32,64 +39,66 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="phone">imageDesciptionLine1:</label>
+                            <label for="phone">Image Desciption Line1:</label>
                             <input type="text" class="form-control" id="imageDesciptionLine1" name="imageDesciptionLine1"
                                 [(ngModel)]="posterModel.imageDesciptionLine1" #phone="ngModel">
                         </div>
                         <div class="form-group">
-                            <label for="phone">imageDesciptionLine2:</label>
+                            <label for="phone">Image Desciption Line2:</label>
                             <input type="text" class="form-control" id="imageDesciptionLine2" name="imageDesciptionLine2"
                                 [(ngModel)]="posterModel.imageDesciptionLine2" #phone="ngModel">
                         </div>
                         <div class="form-group">
-                            <label for="phone">posterTopicDesciption:</label>
+                            <label for="phone">Topic Desciption:</label>
                             <input type="text" class="form-control" id="posterTopicDesciption" name="posterTopicDesciption"
                                 [(ngModel)]="posterModel.posterTopicDesciption" #phone="ngModel">
                         </div>
                         <div class="form-group">
-                            <label for="phone">eventDate:</label>
+                            <label for="phone">Event Date:</label>
                             <input type="text" class="form-control" id="eventDate" name="eventDate"
                                 [(ngModel)]="posterModel.eventDate" #phone="ngModel">
                         </div>
                         <div class="form-group">
-                            <label for="phone">onlineMeetingId:</label>
+                            <label for="phone">Online MeetingId:</label>
                             <input type="text" class="form-control" id="onlineMeetingId" name="onlineMeetingId"
                                 [(ngModel)]="posterModel.onlineMeetingId" #phone="ngModel">
                         </div>
                         <div class="form-group">
-                            <label for="phone">onlineMeetingPassword:</label>
+                            <label for="phone">Online Meeting Password:</label>
                             <input type="text" class="form-control" id="onlineMeetingPassword" name="onlineMeetingPassword"
                                 [(ngModel)]="posterModel.onlineMeetingPassword" #phone="ngModel">
                         </div>
                         <div class="form-group">
-                            <label for="phone">contactPersonName1:</label>
+                            <label for="phone">Contact Person1 Name:</label>
                             <input type="text" class="form-control" id="contactPersonName1" name="contactPersonName1"
                                 [(ngModel)]="posterModel.contactPersonName1" #phone="ngModel">
                         </div>
                         <div class="form-group">
-                            <label for="phone">contactPersonName2:</label>
-                            <input type="text" class="form-control" id="contactPersonName2" name="contactPersonName2"
-                                [(ngModel)]="posterModel.contactPersonName2" #phone="ngModel">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">contactPersonPhone1:</label>
+                            <label for="phone">contactPerson1 Phone:</label>
                             <input type="text" class="form-control" id="contactPersonPhone1" name="contactPersonPhone1"
                                 [(ngModel)]="posterModel.contactPersonPhone1" #phone="ngModel">
                         </div>
                         <div class="form-group">
-                            <label for="phone">contactPersonPhone2:</label>
+                            <label for="phone">Contact Person2 Name:</label>
+                            <input type="text" class="form-control" id="contactPersonName2" name="contactPersonName2"
+                                [(ngModel)]="posterModel.contactPersonName2" #phone="ngModel">
+                        </div>                        
+                        <div class="form-group">
+                            <label for="phone">Contact Person2 Phone:</label>
                             <input type="text" class="form-control" id="contactPersonPhone2" name="contactPersonPhone2"
                                 [(ngModel)]="posterModel.contactPersonPhone2" #phone="ngModel">
                         </div>
                         <button class="btn btn-primary" (click)="clear()">Clear</button>&nbsp;
-                        <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+                      <!--  <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+                      -->
                     </div>
                     </form>
         </div>
          <div class="col">
+            <div class="row imagesection">
             <div> <a [routerLink]="" (click)="convertToImage()">Download as Image</a> </div>
-
-            <div #cnvrtToImage class="wrapper border container-fluid container-custom">
+            
+            <div #cnvrtToImage class="wrapper container-fluid container-custom">
                 <div  class="row">
                     <div class="col-md-12">
                     
@@ -108,7 +117,8 @@
                                     <!--
                                         <img class="img-fluid" alt="Bootstrap Image Preview" src="assets/images/dj.jpeg">
                                     -->
-                                    <img class="img-fluid" alt="Bootstrap Image Preview" src="{{posterModel.mainImageUrl}}">
+                                    <img class="img-fluid" *ngIf="posterModel.mainImageUrl" alt="Bootstrap Image Preview" 
+                                    src="{{posterModel.mainImageUrl}}">
                                     </div>
                                     <div class="col"></div>
                              </div>       
@@ -172,7 +182,8 @@
                         <div class="row">
                             <div class="col-sm">
                                 <div>
-                                    <img class="img-fluid" style="width:100%" alt="Bootstrap Image Preview" src="{{posterModel.footerImageUrl}}">
+                                    <img class="img-fluid" *ngIf="posterModel.footerImageUrl" style="width:100%" 
+                                    alt="Bootstrap Image Preview" src="{{posterModel.footerImageUrl}}">
                                 </div>
                             </div>
                             
@@ -183,6 +194,7 @@
                     </div>
                 </div>
                
+            </div>
             </div>
          </div>
     </div>

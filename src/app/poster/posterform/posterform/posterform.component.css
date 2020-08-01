@@ -1,7 +1,15 @@
 .wrapper {
    /* background-image: url(../../../../assets/images/background/bg_2.png);*/
    background-color: #FFFFE0;
-   color: #000080;
+   color: #000080;   
+}
+.pageText{
+    color: #900C3F;
+    margin: auto;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    font-weight: bold;
+    font-size: 1em;
 }
 .maintitle{
     color: #900C3F;
@@ -21,4 +29,7 @@
 .eventDate {
     color: #900C3F;
     font-weight: bold;
+}
+.imagesection{
+    border-style: dashed;
 }
