@@ -3,6 +3,7 @@ import { ConfigService } from '../app-config/config.service';
 import html2canvas from 'html2canvas';
 import {DataService} from '../shared/service/data.service'
 import { PosterModel } from './posterform/posterform.model'
+import { NavbarService } from 'src/app/navbar/navbar.service';
 
 @Component({
   selector: 'app-poster',
@@ -17,9 +18,10 @@ export class PosterComponent implements OnInit {
   apiRootUrl: String;
   @ViewChild('cnvrtToImage') myDiv: ElementRef;
 
-  constructor(private configService: ConfigService,private dataService: DataService) { }
+  constructor(private nav: NavbarService,private configService: ConfigService,private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.nav.show();
     this.posterModel=new PosterModel();
     this.apiRootUrl=this.configService.api.url.apiRootUrl;
    // console.log('this.apiRootUrl--',this.apiRootUrl);

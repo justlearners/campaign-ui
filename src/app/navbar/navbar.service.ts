@@ -12,6 +12,7 @@ export class NavbarService {
   hide() { this.visible = false; }
 
   show() { 
+    console.log('show invoked--');
     this.visible = true;
     this.visibleOption.next(this.visible);
    }

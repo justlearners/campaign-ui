@@ -18,6 +18,11 @@ export class NavbarComponent {
   );
   window.open(url, '_blank');
 }
+
+openPosterForm() {
+    this.router.navigate([`posterform`]);
+}
+
 openPosterFormInNewWindow() {
   const url = this.router.serializeUrl(
   this.router.createUrlTree([`/posterform`])

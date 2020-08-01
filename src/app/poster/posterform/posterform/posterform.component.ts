@@ -3,6 +3,7 @@ import { PosterModel } from '../posterform.model';
 import { NgForm } from '@angular/forms';
 import {DataService} from '../../../shared/service/data.service'
 import html2canvas from 'html2canvas';
+import { NavbarService } from 'src/app/navbar/navbar.service';
 
 @Component({
   selector: 'app-posterform',
@@ -15,9 +16,10 @@ export class PosterformComponent implements OnInit {
   imageErrMessageMain: string;
   imageErrMessageFooter: string;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,private nav: NavbarService) { }
 
   ngOnInit(): void {
+    this.nav.show();
     this.posterModel=new PosterModel();
   }
 
