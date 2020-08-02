@@ -31,7 +31,7 @@ export class PosterformComponent implements OnInit {
 
   convertToImage(){
     console.log('--image--',this.myDiv.nativeElement);
-    html2canvas(this.myDiv.nativeElement).then(function(canvas) {
+    html2canvas(this.myDiv.nativeElement, {scrollY: -window.scrollY}).then(function(canvas) {
     //console.log('canvas.toDataURL()',canvas.toDataURL());
     canvas.toBlob(function(blob){
       // To download directly on browser default 'downloads' location
