@@ -145,7 +145,7 @@
                                </h3>
                             </div>
                             <p></p>
-                            <div class="row text-center">
+                            <div *ngIf="posterModel.posterTopicDesciption" class="row text-center">
                                     <div class="col"></div>
                                     <div class="col-6 topic-container posterTopicDesciption">
                                         <h3>
@@ -156,7 +156,7 @@
                                     </div>
                                 <div class="col"></div>
                             </div>
-                            <div class="eventDate text-center">
+                            <div *ngIf="posterModel.eventDate" class="eventDate text-center">
                                 <h3>
                                     <small>
                                             Dates: {{posterModel.eventDate}}
@@ -165,18 +165,20 @@
                             </div>
                         
                         <br><br>
-                        <div class="onlineMeetingId container-fluid">
-                            <div class="row">
-                                Zoom Meeting Id: {{posterModel.onlineMeetingId}}
-                             </div>
-                             <div class="onlineMeetingId row">
-                                Zoom Password: {{posterModel.onlineMeetingPassword}}
-                             </div>
-                            <div class="contactPersons row">
-                                Contacts:  {{posterModel.contactPersonName1}} : {{posterModel.contactPersonPhone1}}
-                                        <br>
-                                            {{posterModel.contactPersonName2}} : {{posterModel.contactPersonPhone2}} 
-                             </div>
+                        <div *ngIf="posterModel.onlineMeetingId" class="onlineMeetingId container-fluid">
+                                <div class="row">
+                                    Online Meeting Id: {{posterModel.onlineMeetingId}}
+                                </div>
+                                <div class="onlineMeetingId row">
+                                    Online Meeting Password: {{posterModel.onlineMeetingPassword}}
+                                </div>
+                                </div>
+                            <div *ngIf="posterModel.contactPersonName1" class="contactPersons container-fluid">     
+                                <div class="contactPersons row">
+                                    Contacts:  {{posterModel.contactPersonName1}} : {{posterModel.contactPersonPhone1}}
+                                            <br>
+                                                {{posterModel.contactPersonName2}} : {{posterModel.contactPersonPhone2}} 
+                                </div>
                          </div>
                           <p> </p>
                         <div class="row">
