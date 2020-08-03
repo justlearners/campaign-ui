@@ -30,6 +30,8 @@ export class LoginComponent implements OnInit {
   onSignin(){
     console.log('onSignin--',this.loginModel);
     if(this.loginService.authenticateUser(this.loginModel)) {
+      sessionStorage.setItem('loggedin', 'y');
+      this.dataService.setIsUserLoggedIn(true);
       this.router.navigate(['campaign']);
     }
     else {

@@ -8,6 +8,7 @@ export class DataService {
 
   private posterModelSource$ = new BehaviorSubject<PosterModel>(null);
   private screenNameSource$ = new BehaviorSubject<string>("login");
+  private isUserLoggedInSource$ = new BehaviorSubject<boolean>(true);
 
   constructor() { }
  
@@ -27,6 +28,15 @@ getScreenName(): Observable<string> {
 setScreenName(screenName: string) {
   console.log('setting screenName--',screenName);
   this.screenNameSource$.next(screenName);
+}
+
+isUserLoggedin(): Observable<boolean> {
+  return this.isUserLoggedInSource$.asObservable();
+}
+
+setIsUserLoggedIn(loggedIn: boolean) {
+  console.log('setting loggedIn--',loggedIn);
+  this.isUserLoggedInSource$.next(loggedIn);
 }
 
 }
