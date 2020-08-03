@@ -23,6 +23,10 @@ export class PosterformComponent implements OnInit {
     this.posterModel=new PosterModel();
   }
 
+  ngAfterViewInit(){
+    this.dataService.setScreenName("poster");
+  }
+
   onSubmit(f: NgForm) {
     console.log('onsubmit invoked--',this.posterModel);
     //this.dataService.setPosterModel(this.posterModel);

@@ -27,7 +27,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { PageNotFoundComponent } from './shared/error/page-not-found/page-not-found.component';
 import { PosterComponent } from './poster/poster.component';
 import { PosterformComponent } from './poster/posterform/posterform/posterform.component';
-import { DataService } from './shared/service/data.service'
+import { DataService } from './shared/service/data.service';
+import { LoginComponent } from './login/login.component'
+import { DirectAccessGuard } from './shared/service/access.guard';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { DataService } from './shared/service/data.service'
     NavbarComponent,
     PageNotFoundComponent,
     PosterComponent,
-    PosterformComponent    
+    PosterformComponent,
+    LoginComponent    
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,7 @@ import { DataService } from './shared/service/data.service'
     ToastrModule.forRoot()
     
   ],
-  providers: [CampaignService, ScheduleService,NavbarService,DataService],
+  providers: [CampaignService, ScheduleService,NavbarService,DataService,DirectAccessGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

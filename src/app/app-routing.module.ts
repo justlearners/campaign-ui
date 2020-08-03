@@ -10,11 +10,12 @@ import { CampaignDetailsComponent } from './campaign/campaign-details/campaign-d
 import { CampaignStartComponent } from './campaign/campaign-start/campaign-start.component';
 import { PosterComponent } from './poster/poster.component';
 import { PosterformComponent } from './poster/posterform/posterform/posterform.component';
-
+import { LoginComponent } from './login/login.component';
+import { DirectAccessGuard } from './shared/service/access.guard';
 
 const routes: Routes = [
   {
-    path: 'campaign', component: CampaignComponent, children: [
+    path: 'campaign', component: CampaignComponent,  canActivate: [DirectAccessGuard], children: [
      // {path : '' , component : PageNotFoundComponent},
       { path: ':id', component: CampaignDetailsComponent },
       { path: ':id/booking', component: BookingComponent },
@@ -22,11 +23,13 @@ const routes: Routes = [
      
     ]
   },
-  { path: 'about-us', component: AboutUsComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'about-us', component: AboutUsComponent,  canActivate: [DirectAccessGuard] },
   { path: '404', component: PageNotFoundComponent },
-  { path: 'poster', component: PosterComponent },
-  { path: 'posterform', component: PosterformComponent },
-  { path: '', redirectTo: "/campaign", pathMatch: 'full' },
+  { path: 'poster', component: PosterComponent,  canActivate: [DirectAccessGuard] },
+  { path: 'posterform', component: PosterformComponent,  canActivate: [DirectAccessGuard] },
+ // { path: '', redirectTo: "/campaign", pathMatch: 'full' },
+  { path: '', redirectTo: "/login", pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 
 
