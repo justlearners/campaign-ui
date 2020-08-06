@@ -159,27 +159,33 @@
                             <div *ngIf="posterModel.eventDate" class="eventDate text-center">
                                 <h3>
                                     <small>
-                                            Dates: {{posterModel.eventDate}}
+                                           {{posterModel.eventDate}}
                                     </small> 
                                </h3>
                             </div>
                         
                         <br><br>
-                        <div *ngIf="posterModel.onlineMeetingId" class="onlineMeetingId container-fluid">
+                        <div  class="container-fluid">
                                 <div class="row">
-                                    Online Meeting Id: {{posterModel.onlineMeetingId}}
+                                    <div class="col-5 onlineMeetingId">
+                                        {{posterModel.onlineMeetingId}}
+                                    </div>
+                                    <div class="col-2"></div>
+                                    <div class="col-5 contactPersons">
+                                        {{posterModel.contactPersonName1}}  {{posterModel.contactPersonPhone1}}
+                                    </div>
                                 </div>
-                                <div class="onlineMeetingId row">
-                                    Online Meeting Password: {{posterModel.onlineMeetingPassword}}
+                                <div class="row">
+                                    <div class="col-5 onlineMeetingId">
+                                        {{posterModel.onlineMeetingPassword}}
+                                    </div>
+                                    <div class="col-2"></div> 
+                                    <div class="col-5 contactPersons">
+                                        {{posterModel.contactPersonName2}}  {{posterModel.contactPersonPhone2}} 
+                                    </div>                                    
                                 </div>
-                                </div>
-                            <div *ngIf="posterModel.contactPersonName1" class="contactPersons container-fluid">     
-                                <div class="contactPersons row">
-                                    Contacts:  {{posterModel.contactPersonName1}} : {{posterModel.contactPersonPhone1}}
-                                            <br>
-                                                {{posterModel.contactPersonName2}} : {{posterModel.contactPersonPhone2}} 
-                                </div>
-                         </div>
+                        </div>
+                            
                           <p> </p>
                         <div class="row">
                             <div class="col-sm">
