@@ -104,9 +104,118 @@
                     
                         <div class="">  	
                             <p> </p><p> </p>			
-                                <h2 class="maintitle text-center">
+                                <h1 class="maintitle text-center">
                                     {{posterModel.title}}
-                                </h2>             
+                                </h1>             
+                                <h4 class="subtitle text-center">
+                                    {{posterModel.subtitle}}
+                                </h4>             
+                                <p> </p><p> </p><p> </p>
+                            <div class="row"> 
+                               
+                                    <div> 
+                                    <!--
+                                        <img class="img-fluid" alt="Bootstrap Image Preview" src="assets/images/dj.jpeg">
+                                    -->
+                                    <img class="img-fluid" *ngIf="posterModel.mainImageUrl" alt="Bootstrap Image Preview" 
+                                    src="{{posterModel.mainImageUrl}}">
+                                    </div>
+                               
+                             </div>       
+                            <p></p>
+                            <div class="imageTitle text-center">
+                                <h3>
+                                        {{posterModel.imageTitle}}
+                               </h3>
+                            </div>
+                            <div class="imageDesciptionLine1 text-center">
+                                <h3>
+                                    <small>
+                                        {{posterModel.imageDesciptionLine1}}
+                                    </small> 
+                               </h3>
+                            </div>
+                            <div class="imageDesciptionLine2 text-center">
+                                <h3>
+                                    <small>
+                                        {{posterModel.imageDesciptionLine2}}
+                                    </small> 
+                               </h3>
+                            </div>
+                            <p></p>
+                            <div *ngIf="posterModel.posterTopicDesciption" class="row text-center">
+                                    <div class="col"></div>
+                                    <div class="col-6 topic-container posterTopicDesciption">
+                                        <h3>
+                                            <small>
+                                                {{posterModel.posterTopicDesciption}}
+                                            </small> 
+                                        </h3>
+                                    </div>
+                                <div class="col"></div>
+                            </div>
+                            <div *ngIf="posterModel.eventDate" class="eventDate text-center">
+                                <h3>
+                                    <small>
+                                           {{posterModel.eventDate}}
+                                    </small> 
+                               </h3>
+                            </div>
+                        
+                        <br><br>
+                        <div  class="container-fluid">
+                                <div class="row">
+                                    <div class="col-5 onlineMeetingId">
+                                        {{posterModel.onlineMeetingId}}
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-5 onlineMeetingId">
+                                        {{posterModel.onlineMeetingPassword}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5 onlineMeetingId">
+                                        {{posterModel.contactPersonName1}}
+                                    </div>
+                                   
+                                </div>                                
+                        </div>
+                            
+                          <p> </p>
+                        <div class="row">
+                            <div class="col-sm">
+                                <div>
+                                    <img class="img-fluid" *ngIf="posterModel.footerImageUrl" style="width:100%" 
+                                    alt="Bootstrap Image Preview" src="{{posterModel.footerImageUrl}}">
+                                </div>
+                            </div>
+                            
+                          </div>
+                          <p> </p><p> </p>	
+                              
+                    </div>
+                    </div>
+                </div>
+               
+            </div>
+            <div #cnvrtToImage class="wrapper container-fluid container-custom" style="display:none">
+                <div  class="row">
+                    <div class="col-md-12">
+                    
+                        <div class="">  	
+                            <p> </p><p> </p>
+                            <div class="col-8 text-center"> 
+                                <!--
+                                    <img class="img-fluid" alt="Bootstrap Image Preview" src="assets/images/dj.jpeg">
+                                -->
+                                <img class="img-fluid" *ngIf="posterModel.mainImageUrl" alt="Bootstrap Image Preview" 
+                                src="{{posterModel.mainImageUrl}}">
+                                </div>			
+                                <h1 class="maintitle text-center">
+                                    {{posterModel.title}}
+                                </h1>             
                                 <h4 class="subtitle text-center">
                                     {{posterModel.subtitle}}
                                 </h4>             
@@ -125,9 +234,7 @@
                             <p></p>
                             <div class="imageTitle text-center">
                                 <h3>
-                                    <small>
                                         {{posterModel.imageTitle}}
-                                    </small> 
                                </h3>
                             </div>
                             <div class="imageDesciptionLine1 text-center">
@@ -203,6 +310,7 @@
                 </div>
                
             </div>
+            
             </div>
          </div>
     </div>

@@ -12,7 +12,8 @@
     font-size: 1em;
 }
 .maintitle{
-    color: #900C3F;
+    background-color:  #900C3F;
+    color: white;
     font-weight: bold;
 }
 .subtitle{
@@ -38,8 +39,10 @@
 .onlineMeetingId{
     background-color: #900C3F;
     color: white;
+    font-weight: bold;
 }
 .contactPersons{
     background-color: #900C3F;
     color: white;
+    font-weight: bold;
 }
